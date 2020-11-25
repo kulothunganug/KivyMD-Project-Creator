@@ -1,0 +1,37 @@
+<HomeScreen>:
+
+	MDBoxLayout:
+		orientation: "vertical"
+		pos_hint: {"center_y": .6}
+		adaptive_height: True
+
+		Image:
+			source: "assets/images/logo.png"
+			size_hint_y: None
+
+		CustomLabel:
+			text: "KivyMD Project Creator"
+			halign: "center"
+			font_style: "H1"
+			font_size: sp(56)
+
+		CustomLabel:
+			text: "A Tool to Create Project for KivyMD"
+			halign: "center"
+			font_style: "Body1"
+			theme_text_color: "Hint"
+
+	MDFillRoundFlatIconButton:
+		text: "Create Project"
+		icon: "plus"
+		pos_hint: {"center_x": .5, "center_y": .4}
+		on_release: root.change_to_templates()
+
+	AnchorLayout:
+		anchor_x: "right"
+		anchor_y: "top"
+
+		MDIconButton:
+			icon: "information"
+			on_release:
+				# root.show_information()
