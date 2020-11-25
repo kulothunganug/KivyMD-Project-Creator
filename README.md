@@ -20,5 +20,5 @@ pip install -r requirements.txt
 and run it via `python main.py`
 
 ## TODO
-- Update `base` Template
+- Update `base` Template to work with all `templates`
 - Create New Templates (like `bottom-nav`, `tabs` etc...)
