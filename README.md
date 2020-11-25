@@ -18,3 +18,7 @@ pip install https://github.com/kivymd/KivyMD/archive/master.zip
 pip install -r requirements.txt
 ```
 and run it via `python main.py`
+
+## TODO
+- Update `base` Template
+- Create New Templates (like `bottom-nav`, `tabs` etc...)
