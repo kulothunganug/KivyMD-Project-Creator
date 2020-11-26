@@ -2,7 +2,6 @@ import json
 
 from kivy.clock import Clock
 from kivy.factory import Factory
-from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 
 
@@ -26,7 +25,7 @@ class Root(ScreenManager):
             2. Create screen_name_kv.kv in libs/kv/
             3. Add the screen details in screens.json like below:
                 {
-                    "from libs.baseclass.screen_name_py import ScreenClassName": {
+                    "from libs.uix.baseclass.screen_name_py import ScreenClassName": {
                         "screen_name": "my_screen_name",
                         "factory": "Factory.ScreenClassName()",
                         "kv_file": "screen_name_kv"

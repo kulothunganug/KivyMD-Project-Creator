@@ -22,7 +22,7 @@
 from kivy.properties import BooleanProperty
 from kivymd.uix.label import MDLabel
 
-__all__ = ("AutoScaleLabel", )
+__all__ = ("AutoScaleLabel",)
 
 
 class AutoScaleLabel(MDLabel):

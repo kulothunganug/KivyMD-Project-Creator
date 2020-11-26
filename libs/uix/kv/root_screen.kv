@@ -2,16 +2,12 @@
 #: import FadeTransition kivy.uix.screenmanager.FadeTransition
 
 
-<RootScreen>:
+<RootScreen>
 	transition: FadeTransition(clearcolor=app.theme_cls.bg_dark)
 
 	HomeScreen:
 		name: "home"
-	# TemplatesScreen:
-	# 	name: "templates"
-	# GetDetailsScreen:
-	# 	name: "get_details"
+
 
 <CustomLabel@MDLabel>:
-	size_hint_y: None
-	height: self.texture_size[1]
+	adaptive_height: True

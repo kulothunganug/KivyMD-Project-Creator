@@ -1,16 +1,16 @@
 import os
+import shutil
 
 from kivy.clock import Clock
 from kivy.properties import ColorProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.modalview import ModalView
 from kivymd.color_definitions import hue, palette
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.screen import MDScreen
 from kivymd_extensions.sweetalert import SweetAlert
 from plyer import filechooser
 
-from libs.applibs.utils import copytree, edit_file, get_files
+from libs.applibs import utils
 
 
 class GetDetailsScreen(MDScreen):
@@ -65,27 +65,27 @@ class GetDetailsScreen(MDScreen):
 
     def create_project(
         self,
-        _project_title,
+        _application_title,
         _project_name,
-        _version,
+        _application_version,
         _path_to_project,
         _author_name,
     ):
         (
-            PROJECT_TITLE,
+            APPLICATION_TITLE,
             PROJECT_NAME,
             APPLICATION_VERSION,
             PATH_TO_PROJECT,
             AUTHOR_NAME,
         ) = (
-            _project_title.strip(),
+            _application_title.strip(),
             _project_name.strip(),
-            _version.strip(),
+            _application_version.strip(),
             _path_to_project.strip(),
             _author_name.strip(),
         )
         if (
-            len(PROJECT_TITLE)
+            len(APPLICATION_TITLE)
             and len(PROJECT_NAME)
             and len(APPLICATION_VERSION)
             and len(PATH_TO_PROJECT)
@@ -105,29 +105,34 @@ class GetDetailsScreen(MDScreen):
             SweetAlert().fire("Folder Path Already Exists!")
             return
 
-        # Assinging custom variables
         project_name = PROJECT_NAME.lower()
 
-        # popup = LoadingPopup()
-        # popup_label = popup.ids.label
-        # popup.open()
+        if self.selected_template not in ["empty", "basic"]:
+            SweetAlert().fire("This Template is Not Yet Available Now.")
+            return
 
-        # popup_label.text = "Copying project files"
-
-        copytree("templates/base", FULL_PATH_TO_PROJECT)
+        utils.copytree("templates/base", FULL_PATH_TO_PROJECT)
 
         os.rename(
             os.path.join(FULL_PATH_TO_PROJECT, "project_name.py"),
             os.path.join(FULL_PATH_TO_PROJECT, f"{project_name}.py"),
         )
 
-        # popup_label.text = "Editing files according to your needs"
+        if self.selected_template == "empty":
+            pass
+        elif self.selected_template == "basic":
+            BASIC_KV_FILES = utils.get_files("templates/basic", [".kv"])
+            for file in BASIC_KV_FILES:
+                shutil.copy(
+                    file,
+                    os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix", "kv"),
+                )
 
-        for file in get_files(FULL_PATH_TO_PROJECT):
-            edit_file(
+        for file in utils.get_files(FULL_PATH_TO_PROJECT, [".py", ".spec"]):
+            utils.edit_file(
                 in_file=file,
                 values={
-                    "PROJECT_TITLE": PROJECT_TITLE,
+                    "APPLICATION_TITLE": APPLICATION_TITLE,
                     "PROJECT_NAME": PROJECT_NAME,
                     "project_name": project_name,
                     "APPLICATION_VERSION": APPLICATION_VERSION,
@@ -140,25 +145,11 @@ class GetDetailsScreen(MDScreen):
                 },
             )
 
-        # popup.dismiss()
         SweetAlert().fire(
             "Congrat's",
             f"Project {PROJECT_NAME} Has Been Created Successfully!",
             type="success",
         )
-
-        # if self.selected_template == "backdrop":
-        #     copytree("templates/backdrop", FULL_PATH_TO_PROJECT)
-        # elif self.selected_template == "basic":
-        #     copytree("templates/basic", FULL_PATH_TO_PROJECT)
-        # elif self.selected_template == "bottom-nav":
-        #     copytree("templates/bottom-nav", FULL_PATH_TO_PROJECT)
-        # elif self.selected_template == "empty":
-        #     pass
-        # elif self.selected_template == "nav-drawer":
-        #     copytree("templates/nav-drawer", FULL_PATH_TO_PROJECT)
-        # elif self.selected_template == "tabs":
-        #     copytree("templates/tabs", FULL_PATH_TO_PROJECT)
 
     def set_primary_palette_item(self, instance_menu, instance_menu_item):
         self.ids.primary.ids.primary_palette.set_item(instance_menu_item.text)
@@ -194,7 +185,3 @@ class GetDetailsScreen(MDScreen):
 
 class ColorWidget(BoxLayout):
     rgba_color = ColorProperty()
-
-
-class LoadingPopup(ModalView):
-    pass

@@ -44,10 +44,12 @@ def edit_file(in_file, out_file=None, values=None):
         with open(out_file if out_file else in_file, "w") as f:
             f.write(string_file)
 
-def get_files(_path):
+
+def get_files(path, ext):
     FILES = []
-    for root, dirs, files in os.walk(_path):
+    for root, dirs, files in os.walk(path):
         for file in files:
-            if file.endswith(".py") or file.endswith(".spec"):
-                FILES.append(os.path.join(root, file))
+            if ext and os.path.splitext(file)[1] not in ext:
+                continue
+            FILES.append(os.path.join(root, file))
     return FILES

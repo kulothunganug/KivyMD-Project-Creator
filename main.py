@@ -9,7 +9,7 @@ from kivymd.app import MDApp
 
 from libs.uix.baseclass.root_screen import RootScreen
 
-__version__ = "0.08"
+__version__ = "0.01a"
 
 
 # this is needed for supporting Windows 10 with OpenGL < v2.0

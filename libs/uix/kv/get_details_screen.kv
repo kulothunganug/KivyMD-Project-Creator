@@ -6,7 +6,8 @@
 #: import TextFieldRound libs.uix.custom_uix.textfield.TextFieldRound
 #: import CustomImage libs.uix.baseclass.templates_screen.CustomImage
 
-<GetDetailsScreen>:
+<GetDetailsScreen>
+
 	MDBoxLayout:
 		orientation: "vertical"
 
@@ -39,17 +40,17 @@
 					halign: "left"
 				MDSeparator:
 				CustomTextField:
-					id: project_title
+					id: application_title
 					icon_left: "rename-box"
-					hint_text: "Project Title"
-					on_info_press: SweetAlert().fire("Project Title", "Title of Your Project.")
+					hint_text: "Application Title"
+					on_info_press: SweetAlert().fire("Application Title", "Title of Your App.")
 				CustomTextField:
 					id: project_name
 					icon_left: "script-text"
 					hint_text: "Project Name"
 					on_info_press: SweetAlert().fire("Project Name", "Name of Your Project, Must Not Contain Space.")
 				CustomTextField:
-					id: version
+					id: application_version
 					icon_left: "alpha-v"
 					hint_text: "Application Version"
 					on_info_press: SweetAlert().fire("Application Version", "Version of Your Project.")
@@ -93,7 +94,7 @@
 					MDRaisedButton:
 						text: "Create Project"
 						on_release:
-							root.create_project(project_title.text, project_name.text, version.text, path_to_project.text, author_name.text)
+							root.create_project(application_title.text, project_name.text, application_version.text, path_to_project.text, author_name.text)
 
 <CustomTextField@TextFieldRound>:
 	icon_right: "information-variant"
@@ -197,53 +198,6 @@
 
 		ColorWidget:
 			rgba_color: "FAFAFA" if theme_style.current_item == "Light" else "121212"
-
-<LoadingPopup>:
-    size_hint: (.9, .15)
-    pos_hint: {'center_x': .5, 'center_y': .5}
-    background: f"{images_path}/transparent.png"
-    on_pre_open: spinner.active == True
-    on_dismiss: spinner.active == False
-    auto_dismiss: False
-
-    canvas:
-        Color:
-            rgb: app.theme_cls.bg_normal
-        RoundedRectangle:
-            radius: [20,]
-            size: self.size
-            pos: self.pos
-
-    MDBoxLayout:
-    	adaptive_height: True
-    	spacing: dp(40)
-    	padding: dp(40)
-    	pos_hint: {"center_y": .5}
-
-	    MDSpinner:
-	        id: spinner
-	        size_hint: None, None
-	        size: dp(46), dp(46)
-
-        MDBoxLayout:
-        	orientation: "vertical"
-        	spacing: dp(10)
-
-		    CustomLabel:
-		        text: "Loading"
-		        font_style: "H6"
-		        halign: "left"
-		        valign: "middle"
-
-		    CustomLabel:
-		        id: label
-		        theme_text_color: "Secondary"
-		        font_style: "Body1"
-		        halign: "left"
-		        valign: "middle"
-
-		Widget:
-
 
 <ColorWidget>:
     size_hint_x: None
