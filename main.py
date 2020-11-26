@@ -9,7 +9,7 @@ from kivymd.app import MDApp
 
 from libs.uix.baseclass.root_screen import RootScreen
 
-__version__ = "0.01a"
+__version__ = "v0.05.1a"
 
 
 # this is needed for supporting Windows 10 with OpenGL < v2.0
@@ -17,7 +17,7 @@ __version__ = "0.01a"
 if platform.system() == "Windows":
     os.environ["KIVY_GL_BACKEND"] = "angle_sdl2"
 
-Logger.info("KivyMD Project Creator: " + f"v{__version__}")
+Logger.info("KivyMD Project Creator: " + __version__)
 
 Window.maximize()
 
