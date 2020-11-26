@@ -1,7 +1,17 @@
 # KivyMD Project Creator
 A GUI Based Tool to Create Project for [KivyMD](https://github.com/kivymd/KivyMD)
 
-**_Note_: This Project is Not Yet Been Ready for Usage.**
+**_Note_: This Project is Not Yet Been Ready for FULL Usage.**
+
+| Templates              | Availability |
+| ---------------------- | ------------ |
+| Empty                  | ✔            |
+| Basic                  | ✔            |
+| Bottom-Navigation      |              |
+| Tab                    |              |
+| Navigation-Drawer      |              |
+| Backdrop               |              |
+
 
 ## Dependencies
 - [Python 3.6+](https://www.python.org/)
