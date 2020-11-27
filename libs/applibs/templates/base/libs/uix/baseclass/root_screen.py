@@ -21,8 +21,8 @@ class Root(ScreenManager):
         """
         If you need to use more screens in your app,
         Create your screen files like below:
-            1. Create screen_name_py.py in libs/baseclass/
-            2. Create screen_name_kv.kv in libs/kv/
+            1. Create screen_name_py.py in libs/uix/baseclass/
+            2. Create screen_name_kv.kv in libs/uix/kv/
             3. Add the screen details in screens.json like below:
                 {
                     "from libs.uix.baseclass.screen_name_py import ScreenClassName": {

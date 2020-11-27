@@ -105,13 +105,13 @@ class GetDetailsScreen(MDScreen):
             SweetAlert().fire("Folder Path Already Exists!")
             return
 
-        project_name = PROJECT_NAME.lower()
-
         if self.selected_template not in ["empty", "basic"]:
             SweetAlert().fire("This Template is Not Yet Available Now.")
             return
 
-        utils.copytree("templates/base", FULL_PATH_TO_PROJECT)
+        project_name = PROJECT_NAME.lower()
+        TEMPLATE_FOLDER = os.path.join("libs", "applibs", "templates")
+        utils.copytree(os.path.join(TEMPLATE_FOLDER, "base"), FULL_PATH_TO_PROJECT)
 
         os.rename(
             os.path.join(FULL_PATH_TO_PROJECT, "project_name.py"),
@@ -121,7 +121,7 @@ class GetDetailsScreen(MDScreen):
         if self.selected_template == "empty":
             pass
         elif self.selected_template == "basic":
-            BASIC_KV_FILES = utils.get_files("templates/basic", [".kv"])
+            BASIC_KV_FILES = utils.get_files(os.path.join(TEMPLATE_FOLDER, "basic"), [".kv"])
             for file in BASIC_KV_FILES:
                 shutil.copy(
                     file,

@@ -43,23 +43,23 @@
 					id: application_title
 					icon_left: "rename-box"
 					hint_text: "Application Title"
-					on_info_press: SweetAlert().fire("Application Title", "Title of Your App.")
+					on_info_press: SweetAlert().fire("Application Title", "Title of the App.")
 				CustomTextField:
 					id: project_name
 					icon_left: "script-text"
 					hint_text: "Project Name"
-					on_info_press: SweetAlert().fire("Project Name", "Name of Your Project, Must Not Contain Space.")
+					on_info_press: SweetAlert().fire("Project Name", "Name of the Project, Must Not Contain Space.")
 				CustomTextField:
 					id: application_version
 					icon_left: "alpha-v"
 					hint_text: "Application Version"
-					on_info_press: SweetAlert().fire("Application Version", "Version of Your Project.")
+					on_info_press: SweetAlert().fire("Application Version", "Version of the Project.")
 				CustomTextField:
 					id: path_to_project
 					icon_left: "folder"
 					hint_text: "Path to Project"
 					on_focus: root.open_file_manager(self)
-					on_info_press: SweetAlert().fire("Path to Project", "Path to Create Your Project.")
+					on_info_press: SweetAlert().fire("Path to Project", "Path to Create the Project.")
 				CustomTextField:
 					id: author_name
 					icon_left: "face"
