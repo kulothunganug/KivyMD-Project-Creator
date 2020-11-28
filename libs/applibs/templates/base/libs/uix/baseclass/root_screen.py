@@ -1,8 +1,11 @@
 import json
 
+import utils
 from kivy.clock import Clock
 from kivy.factory import Factory
 from kivy.uix.screenmanager import ScreenManager
+
+utils.load_kv("root_screen.kv")
 
 
 class Root(ScreenManager):

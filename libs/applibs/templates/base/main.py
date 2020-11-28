@@ -1,3 +1,9 @@
+import os
+import sys
+
+root_dir = os.path.split(os.path.abspath(sys.argv[0]))[0]
+sys.path.insert(0, os.path.join(root_dir, "libs", "applibs"))
+
 import json
 import traceback
 

@@ -26,6 +26,7 @@ class TemplatesScreen(MDScreen):
                     "get_details"
                 ).selected_template = widget.name
                 self.manager.current = "get_details"
+                break
 
 
 class CustomImage(

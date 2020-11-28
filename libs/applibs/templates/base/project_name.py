@@ -2,7 +2,6 @@ import os
 import platform
 
 from kivy.core.window import Window
-from kivy.lang import Builder
 from kivymd.app import MDApp
 
 from libs.uix.baseclass.root_screen import Root
@@ -29,8 +28,4 @@ class PROJECT_NAME(MDApp):
         self.theme_cls.theme_style = "THEME_STYLE"
 
     def build(self):
-        PATH_TO_KV_FILES = os.path.join(self.directory, "libs", "uix", "kv")
-        for kv_file in os.listdir(PATH_TO_KV_FILES):
-            if kv_file.endswith(".kv"):
-                Builder.load_file(os.path.join(PATH_TO_KV_FILES, kv_file))
         return Root()

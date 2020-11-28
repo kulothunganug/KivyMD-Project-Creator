@@ -199,7 +199,7 @@
 		ColorWidget:
 			rgba_color: "FAFAFA" if theme_style.current_item == "Light" else "121212"
 
-<ColorWidget>:
+<ColorWidget>
     size_hint_x: None
 
     canvas:
@@ -209,3 +209,10 @@
     		size: self.size
     		pos: self.pos
     		radius: [10,]
+
+<OnFileChooserOpen>
+
+	MDLabel:
+		text: "File Chooser is in Open"
+		font_style: "H3"
+		halign: "center"
