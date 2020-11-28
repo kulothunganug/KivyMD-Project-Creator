@@ -1,7 +1,6 @@
 # KivyMD Project Creator
 A GUI Based Tool to Create Project for [KivyMD](https://github.com/kivymd/KivyMD)
 
-**_Note_: This Project is Not Yet Been Ready for FULL Usage.**
 
 | Template               | Availability |
 | ---------------------- | ------------ |
