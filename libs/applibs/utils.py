@@ -47,9 +47,9 @@ def edit_file(in_file, out_file=None, values=None):
 
 def get_files(path, ext):
     FILES = []
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            if ext and os.path.splitext(file)[1] not in ext:
-                continue
-            FILES.append(os.path.join(root, file))
+
+    for i in os.listdir(path):
+        if os.path.splitext(i)[1] in ext:
+            FILES.append(os.path.join(path, i))
+
     return FILES
