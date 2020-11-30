@@ -7,7 +7,7 @@ A GUI Based Tool to Create Project for [KivyMD](https://github.com/kivymd/KivyMD
 | Empty                  | ✔            |
 | Basic                  | ✔            |
 | Bottom-Navigation      | ✔            |
-| Tab                    |              |
+| Tab                    | ✔            |
 | Navigation-Drawer      |              |
 | Backdrop               |              |
 
