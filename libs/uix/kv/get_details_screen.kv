@@ -8,211 +8,210 @@
 
 <GetDetailsScreen>
 
-	MDBoxLayout:
-		orientation: "vertical"
+    MDBoxLayout:
+        orientation: "vertical"
 
-		MDToolbar:
-			title: "Please Enter Your App Details"
-			anchor_title: "center"
-			md_bg_color: self.theme_cls.bg_normal
-			left_action_items: [["arrow-left", lambda x: root.change_to_templates()]]
+        MDToolbar:
+            title: "Please Enter Your App Details"
+            anchor_title: "center"
+            md_bg_color: self.theme_cls.bg_normal
+            left_action_items: [["arrow-left", lambda x: root.change_to_templates()]]
 
-		MDBoxLayout:
+        MDBoxLayout:
 
-			CustomImage:
-				name: root.selected_template
-				use_toggle_behavior: False
-				hover_behavior: False
-				size_hint_x: None
-				width: dp(200)
-				pos_hint: {"center_x": .5, "center_y": .5}
+            CustomImage:
+                name: root.selected_template
+                use_toggle_behavior: False
+                hover_behavior: False
+                size_hint_x: None
+                width: dp(200)
+                pos_hint: {"center_x": .5, "center_y": .5}
 
-			MDBoxLayout:
-				orientation: "vertical"
-				adaptive_height: True
-				spacing: dp(10)
-				padding: dp(20)
-				pos_hint: {"center_x": .5, "center_y": .5}
+            MDBoxLayout:
+                orientation: "vertical"
+                adaptive_height: True
+                spacing: dp(10)
+                padding: dp(20)
+                pos_hint: {"center_x": .5, "center_y": .5}
 
-				CustomLabel:
-					text: "Basic"
-					font_style: "H6"
-					halign: "left"
-				MDSeparator:
-				CustomTextField:
-					id: application_title
-					icon_left: "rename-box"
-					hint_text: "Application Title"
-					on_info_press: SweetAlert().fire("Application Title", "Title of the App.")
-				CustomTextField:
-					id: project_name
-					icon_left: "script-text"
-					hint_text: "Project Name"
-					on_info_press: SweetAlert().fire("Project Name", "Name of the Project, Must Not Contain Space.")
-				CustomTextField:
-					id: application_version
-					icon_left: "alpha-v"
-					hint_text: "Application Version"
-					on_info_press: SweetAlert().fire("Application Version", "Version of the Project.")
-				CustomTextField:
-					id: path_to_project
-					icon_left: "folder"
-					hint_text: "Path to Project"
-					on_focus: root.open_file_manager(self)
-					on_info_press: SweetAlert().fire("Path to Project", "Path to Create the Project.")
-				CustomTextField:
-					id: author_name
-					icon_left: "face"
-					hint_text: "Author Name"
-					on_info_press: SweetAlert().fire("Author Name", "Name of the Author of the Project.")
+                CustomLabel:
+                    text: "Basic"
+                    font_style: "H6"
+                    halign: "left"
+                MDSeparator:
+                CustomTextField:
+                    id: application_title
+                    icon_left: "rename-box"
+                    hint_text: "Application Title"
+                    on_info_press: SweetAlert().fire("Application Title", "Title of the App.")
+                CustomTextField:
+                    id: project_name
+                    icon_left: "script-text"
+                    hint_text: "Project Name"
+                    on_info_press: SweetAlert().fire("Project Name", f"Name of the Project, Must Not Contain '{root.ignore_chars}'")
+                CustomTextField:
+                    id: application_version
+                    icon_left: "alpha-v"
+                    hint_text: "Application Version"
+                    on_info_press: SweetAlert().fire("Application Version", "Version of the Project.\nA Good Versioning Will Be MAJOR.MINOR.PATCH (ex: 0.1.3)")
+                CustomTextField:
+                    id: path_to_project
+                    icon_left: "folder"
+                    hint_text: "Path to Project"
+                    on_focus: root.open_file_manager(self)
+                    on_info_press: SweetAlert().fire("Path to Project", "Path to Create the Project.")
+                CustomTextField:
+                    id: author_name
+                    icon_left: "face"
+                    hint_text: "Author Name"
+                    on_info_press: SweetAlert().fire("Author Name", "Name of the Author of the Project.")
 
-				MDBoxLayout:
-					orientation: "vertical"
-					adaptive_height: True
-					CustomLabel:
-						text: "Theming"
-						font_style: "H6"
-						halign: "left"
-					MDSeparator:
+                MDBoxLayout:
+                    orientation: "vertical"
+                    adaptive_height: True
+                    CustomLabel:
+                        text: "Theming"
+                        font_style: "H6"
+                        halign: "left"
+                    MDSeparator:
 
-				MDBoxLayout:
-					adaptive_height: True
-					padding: (dp(100), 0, dp(100), 0)
+                MDBoxLayout:
+                    adaptive_height: True
+                    padding: (dp(100), 0, dp(100), 0)
 
-					PrimaryTheming:
-						id: primary
-					Widget:
-					AccentTheming:
-						id: accent
-					Widget:
-					ThemeStyleTheming:
-						id: theme_style
+                    PrimaryTheming:
+                        id: primary
+                    Widget:
+                    AccentTheming:
+                        id: accent
+                    Widget:
+                    ThemeStyleTheming:
+                        id: theme_style
 
-				MDBoxLayout:
-					adaptive_height: True
-					Widget:
-					MDRaisedButton:
-						text: "Create Project"
-						on_release:
-							root.create_project(application_title.text, project_name.text, application_version.text, path_to_project.text, author_name.text)
+                MDBoxLayout:
+                    adaptive_height: True
+                    Widget:
+                    MDRaisedButton:
+                        text: "Create Project"
+                        on_release:
+                            root.create_project(application_title.text, project_name.text, application_version.text, path_to_project.text, author_name.text)
 
-<CustomTextField@TextFieldRound>:
-	icon_right: "information-variant"
+<CustomTextField@TextFieldRound>
+    icon_right: "information-variant"
 
+<PrimaryTheming@MDBoxLayout>
+    orientation: "vertical"
+    adaptive_size: True
+    spacing: dp(5)
 
-<PrimaryTheming@MDBoxLayout>:
-	orientation: "vertical"
-	adaptive_size: True
-	spacing: dp(5)
+    CustomLabel:
+        text: "Primary"
+        font_style: "Button"
+        halign: "center"
 
-	CustomLabel:
-		text: "Primary"
-		font_style: "Button"
-		halign: "center"
+    MDSeparator:
 
-	MDSeparator:
+    MDBoxLayout:
+        adaptive_size: True
 
-	MDBoxLayout:
-		adaptive_size: True
+        MDBoxLayout:
+            adaptive_size: True
+            orientation: "vertical"
 
-		MDBoxLayout:
-			adaptive_size: True
-			orientation: "vertical"
+            MDDropDownItem:
+                id: primary_palette
+                text: "Blue"
+                current_item: "Blue"
+                on_release: root.parent.parent.parent.parent.parent.primary_palette_menu.open()
 
-			MDDropDownItem:
-				id: primary_palette
-				text: "Blue"
-				current_item: "Blue"
-				on_release: root.parent.parent.parent.parent.parent.primary_palette_menu.open()
+            MDDropDownItem:
+                id: primary_hue
+                text: "500"
+                current_item: "500"
+                on_release: root.parent.parent.parent.parent.parent.primary_hue_menu.open()
 
-			MDDropDownItem:
-				id: primary_hue
-				text: "500"
-				current_item: "500"
-				on_release: root.parent.parent.parent.parent.parent.primary_hue_menu.open()
+        ColorWidget:
+            rgba_color: colors[primary_palette.current_item][primary_hue.current_item] if primary_palette.current_item else "FFFFFF"
 
-		ColorWidget:
-			rgba_color: colors[primary_palette.current_item][primary_hue.current_item] if primary_palette.current_item else "FFFFFF"
+<AccentTheming@MDBoxLayout>
+    orientation: "vertical"
+    adaptive_size: True
+    spacing: dp(5)
 
-<AccentTheming@MDBoxLayout>:
-	orientation: "vertical"
-	adaptive_size: True
-	spacing: dp(5)
+    CustomLabel:
+        text: "Accent"
+        font_style: "Button"
+        halign: "center"
 
-	CustomLabel:
-		text: "Accent"
-		font_style: "Button"
-		halign: "center"
+    MDSeparator:
 
-	MDSeparator:
+    MDBoxLayout:
+        adaptive_size: True
 
-	MDBoxLayout:
-		adaptive_size: True
+        MDBoxLayout:
+            adaptive_size: True
+            orientation: "vertical"
 
-		MDBoxLayout:
-			adaptive_size: True
-			orientation: "vertical"
+            MDDropDownItem:
+                id: accent_palette
+                text: "Amber"
+                current_item: "Amber"
+                on_release: root.parent.parent.parent.parent.parent.accent_palette_menu.open()
 
-			MDDropDownItem:
-				id: accent_palette
-				text: "Amber"
-				current_item: "Amber"
-				on_release: root.parent.parent.parent.parent.parent.accent_palette_menu.open()
+            MDDropDownItem:
+                id: accent_hue
+                text: "500"
+                current_item: "500"
+                on_release: root.parent.parent.parent.parent.parent.accent_hue_menu.open()
 
-			MDDropDownItem:
-				id: accent_hue
-				text: "500"
-				current_item: "500"
-				on_release: root.parent.parent.parent.parent.parent.accent_hue_menu.open()
+        ColorWidget:
+            rgba_color: colors[accent_palette.current_item][accent_hue.current_item] if accent_palette.current_item else "FFFFFF"
 
-		ColorWidget:
-			rgba_color: colors[accent_palette.current_item][accent_hue.current_item] if accent_palette.current_item else "FFFFFF"
+<ThemeStyleTheming@MDBoxLayout>
+    orientation: "vertical"
+    adaptive_size: True
+    spacing: dp(5)
 
-<ThemeStyleTheming@MDBoxLayout>:
-	orientation: "vertical"
-	adaptive_size: True
-	spacing: dp(5)
+    CustomLabel:
+        text: "Theme Style"
+        font_style: "Button"
+        halign: "center"
 
-	CustomLabel:
-		text: "Theme Style"
-		font_style: "Button"
-		halign: "center"
+    MDSeparator:
 
-	MDSeparator:
+    MDBoxLayout:
+        adaptive_size: True
 
-	MDBoxLayout:
-		adaptive_size: True
+        MDBoxLayout:
+            orientation: "vertical"
+            adaptive_size: True
 
-		MDBoxLayout:
-			orientation: "vertical"
-			adaptive_size: True
+            MDDropDownItem:
+                id: theme_style
+                text: "Light"
+                current_item: "Light"
+                on_release: root.parent.parent.parent.parent.parent.theme_style_menu.open()
 
-			MDDropDownItem:
-				id: theme_style
-				text: "Light"
-				current_item: "Light"
-				on_release: root.parent.parent.parent.parent.parent.theme_style_menu.open()
+            MDDropDownItem: # dummy
+                opacity: 0
 
-			MDDropDownItem: # dummy
-				opacity: 0
-
-		ColorWidget:
-			rgba_color: "FAFAFA" if theme_style.current_item == "Light" else "121212"
+        ColorWidget:
+            rgba_color: "FAFAFA" if theme_style.current_item == "Light" else "121212"
 
 <ColorWidget>
     size_hint_x: None
 
     canvas:
-    	Color:
-    		rgba: self.rgba_color
-    	RoundedRectangle:
-    		size: self.size
-    		pos: self.pos
-    		radius: [10,]
+        Color:
+            rgba: self.rgba_color
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [10,]
 
 <OnFileChooserOpen>
 
-	MDLabel:
-		text: "File Chooser is in Open"
-		font_style: "H3"
-		halign: "center"
+    MDLabel:
+        text: "File Chooser is in Open!"
+        font_style: "H3"
+        halign: "center"

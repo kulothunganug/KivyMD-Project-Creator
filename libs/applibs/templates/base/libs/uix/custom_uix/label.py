@@ -1,23 +1,12 @@
-'''
+"""
     Usage:
-
-        from kivymd.app import MDApp
-        from kivy.lang import Builder
-
-        KV = """
-        AutoScaleLabel:
-            text: "Test"
-        """
-
-
-        class Example(MDApp):
-            def build(self):
-                return Builder.load_string(KV)
-
-
-        Example().run()
-
-'''
+    -----
+    Use it like a normal `MDLabel` but not to use these attr:
+        * auto_scale
+        * texture_size = 0
+        * width = 0
+        * height = 0
+"""
 
 from kivy.properties import BooleanProperty
 from kivymd.uix.label import MDLabel
@@ -27,8 +16,8 @@ __all__ = ("AutoScaleLabel",)
 
 class AutoScaleLabel(MDLabel):
     """
-    AutoScaleLabel is inherited from MDLabel
-    so MDLabel's all attr can be used in this.
+    AutoScaleLabel is inherited from MDLabel,
+    so `MDLabel`'s all attr can be used in this.
     """
 
     auto_scale = BooleanProperty(True)

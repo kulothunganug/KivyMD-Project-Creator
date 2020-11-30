@@ -1,0 +1,22 @@
+#: import TabOne libs.uix.baseclass.tab_one.TabOne
+#: import TabTwo libs.uix.baseclass.tab_two.TabTwo
+#: import TabThree libs.uix.baseclass.tab_three.TabThree
+
+<HomeScreen>
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            title: "Tab Activity"
+            right_action_items: [["dots-vertical", lambda x: x]]
+
+        MDTabs:
+            tab_indicator_anim: True
+
+            TabOne:
+                text: "One"
+            TabTwo:
+                text: "Two"
+            TabThree:
+                text: "Three"

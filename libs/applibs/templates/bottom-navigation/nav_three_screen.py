@@ -1,8 +1,8 @@
 import utils
 from kivymd.uix.bottomnavigation import MDBottomNavigationItem
 
-utils.load_kv("three_nav_screen.kv")
+utils.load_kv("nav_three_screen.kv")
 
 
-class ThreeNavScreen(MDBottomNavigationItem):
+class NavThreeScreen(MDBottomNavigationItem):
     pass

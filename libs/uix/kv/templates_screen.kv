@@ -1,48 +1,49 @@
-<TemplatesScreen>:
+<TemplatesScreen>
 
-	MDBoxLayout:
-		orientation: "vertical"
-		MDToolbar:
-			title: "Select Your Template"
-			anchor_title: "center"
-			md_bg_color: self.theme_cls.bg_normal
-			left_action_items: [["arrow-left", lambda x: root.change_to_home()]]
-			right_action_items: [["arrow-right", lambda x: root.change_to_get_details()]]
+    MDBoxLayout:
+        orientation: "vertical"
 
-		ScrollView:
+        MDToolbar:
+            title: "Select Your Template"
+            anchor_title: "center"
+            md_bg_color: self.theme_cls.bg_normal
+            left_action_items: [["arrow-left", lambda x: root.change_to_home()]]
+            right_action_items: [["arrow-right", lambda x: root.change_to_get_details()]]
 
-			MDGridLayout:
-				id: container
-				cols: 3
-				padding: dp(20)
-				spacing: dp(20)
-				adaptive_height: True
+        ScrollView:
 
-				CustomImage:
-					name: "empty"
-				CustomImage:
-					name: "basic"
-				CustomImage:
-					name: "bottom-navigation"
-				CustomImage:
-					name: "tab"
-				CustomImage:
-					name: "navigation-drawer"
-				CustomImage:
-					name: "backdrop"
+            MDGridLayout:
+                id: container
+                cols: 3
+                padding: dp(20)
+                spacing: dp(20)
+                adaptive_height: True
 
-<CustomImage>:
-	orientation: "vertical"
-	adaptive_height: True
-	spacing: dp(10)
-	padding: dp(5)
+                CustomImage:
+                    name: "empty"
+                CustomImage:
+                    name: "basic"
+                CustomImage:
+                    name: "bottom-navigation"
+                CustomImage:
+                    name: "tab"
+                CustomImage:
+                    name: "navigation-drawer"
+                CustomImage:
+                    name: "backdrop"
 
-	Image:
-		source: "assets/images/templates/" + root.name + ".png"
-	    size_hint_y: None
-	    height: dp(340)
+<CustomImage>
+    orientation: "vertical"
+    adaptive_height: True
+    spacing: dp(10)
+    padding: dp(5)
 
-	CustomLabel:
-		text: (root.name).title()
-		halign: "center"
-		font_style: "H6" if root.use_toggle_behavior else "Body1"
+    Image:
+        source: "assets/images/templates/" + root.name + ".png"
+        size_hint_y: None
+        height: dp(340)
+
+    CustomLabel:
+        text: (root.name).title()
+        halign: "center"
+        font_style: "H6" if root.use_toggle_behavior else "Body1"

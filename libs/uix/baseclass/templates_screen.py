@@ -1,5 +1,5 @@
+import utils
 from kivy.graphics import Color, RoundedRectangle
-from kivy.lang import Builder
 from kivy.properties import BooleanProperty, StringProperty
 from kivy.uix.behaviors import ToggleButtonBehavior
 from kivymd.theming import ThemableBehavior
@@ -14,7 +14,7 @@ class TemplatesScreen(MDScreen):
 
     def change_to_get_details(self):
         if not self.manager.has_screen("get_details"):
-            Builder.load_file("libs/uix/kv/get_details_screen.kv")
+            utils.load_kv("get_details_screen.kv")
             from libs.uix.baseclass.get_details_screen import GetDetailsScreen
 
             screen_object = GetDetailsScreen(name="get_details")

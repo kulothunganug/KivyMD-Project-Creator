@@ -19,10 +19,11 @@ class GetDetailsScreen(MDScreen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.ignore_chars = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ "
+        self.on_file_chooser_open = OnFileChooserOpen()
         Clock.schedule_once(self._late_init)
 
     def _late_init(self, interval):
-        self.on_file_chooser_open = OnFileChooserOpen()
         menu_items = [{"text": primary_palette} for primary_palette in palette]
         self.primary_palette_menu = MDDropdownMenu(
             caller=self.ids.primary.ids.primary_palette,
@@ -85,6 +86,7 @@ class GetDetailsScreen(MDScreen):
             _path_to_project.strip(),
             _author_name.strip(),
         )
+
         if (
             len(APPLICATION_TITLE)
             and len(PROJECT_NAME)
@@ -95,26 +97,33 @@ class GetDetailsScreen(MDScreen):
             SweetAlert().fire("Please Fill Up All the Fields!", type="warning")
             return
 
-        if " " in PROJECT_NAME:
+        for char in list(self.ignore_chars):
+            if char in PROJECT_NAME:
+                SweetAlert().fire(
+                    f"Please Don't Use '{char}' in Project Name",
+                    type="warning",
+                )
+                return
+
+        FULL_PATH_TO_PROJECT = os.path.join(PATH_TO_PROJECT, PROJECT_NAME)
+        project_name = PROJECT_NAME.lower()
+
+        if os.path.exists(FULL_PATH_TO_PROJECT):
             SweetAlert().fire(
-                "Please Don't Use Space in Project Name", type="warning"
+                f"Folder Named {project_name} is Already Exists! in '{PATH_TO_PROJECT}'",
+                type="warning",
             )
             return
 
-        FULL_PATH_TO_PROJECT = os.path.join(PATH_TO_PROJECT, PROJECT_NAME)
-        if os.path.exists(FULL_PATH_TO_PROJECT):
-            SweetAlert().fire("Folder Path Already Exists!")
-            return
-
-        if self.selected_template not in [
-            "empty",
-            "basic",
-            "bottom-navigation",
+        if self.selected_template in [
+            "navigation-drawer",
+            "backdrop",
         ]:
-            SweetAlert().fire("This Template is Not Yet Available Now.")
+            SweetAlert().fire(
+                "This Template is Not Yet Available Now.", type="info"
+            )
             return
 
-        project_name = PROJECT_NAME.lower()
         TEMPLATE_FOLDER = os.path.join("libs", "applibs", "templates")
         utils.copytree(
             os.path.join(TEMPLATE_FOLDER, "base"), FULL_PATH_TO_PROJECT
@@ -126,7 +135,14 @@ class GetDetailsScreen(MDScreen):
         )
 
         if self.selected_template == "empty":
-            pass
+            EMPTY_KV_FILES = utils.get_files(
+                os.path.join(TEMPLATE_FOLDER, "empty"), [".kv"]
+            )
+            for kv_file in EMPTY_KV_FILES:
+                shutil.copy(
+                    kv_file,
+                    os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix", "kv"),
+                )
         elif self.selected_template == "basic":
             BASIC_KV_FILES = utils.get_files(
                 os.path.join(TEMPLATE_FOLDER, "basic"), [".kv"]
@@ -150,6 +166,22 @@ class GetDetailsScreen(MDScreen):
                     ),
                 )
             for kv_file in BOTTOM_NAV_KV_FILES:
+                shutil.copy(
+                    kv_file,
+                    os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix", "kv"),
+                )
+        elif self.selected_template == "tab":
+            TAB_FOLDER = os.path.join(TEMPLATE_FOLDER, "tab")
+            TAB_PY_FILES = utils.get_files(TAB_FOLDER, [".py"])
+            TAB_KV_FILES = utils.get_files(TAB_FOLDER, [".kv"])
+            for py_file in TAB_PY_FILES:
+                shutil.copy(
+                    py_file,
+                    os.path.join(
+                        FULL_PATH_TO_PROJECT, "libs", "uix", "baseclass"
+                    ),
+                )
+            for kv_file in TAB_KV_FILES:
                 shutil.copy(
                     kv_file,
                     os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix", "kv"),

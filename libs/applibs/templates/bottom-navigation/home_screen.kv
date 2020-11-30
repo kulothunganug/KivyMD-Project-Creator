@@ -1,29 +1,29 @@
-#: import OneNavScreen libs.uix.baseclass.one_nav_screen.OneNavScreen
-#: import TwoNavScreen libs.uix.baseclass.two_nav_screen.TwoNavScreen
-#: import ThreeNavScreen libs.uix.baseclass.three_nav_screen.ThreeNavScreen
+#: import NavOneScreen libs.uix.baseclass.nav_one_screen.NavOneScreen
+#: import NavTwoScreen libs.uix.baseclass.nav_two_screen.NavTwoScreen
+#: import NavThreeScreen libs.uix.baseclass.nav_three_screen.NavThreeScreen
 
 <HomeScreen>
 
-	MDBoxLayout:
-		orientation: "vertical"
+    MDBoxLayout:
+        orientation: "vertical"
 
-		MDToolbar:
-			title: "Botton-Nav... Activity"
-			right_action_items: [["dots-vertical", lambda x: x]]
+        MDToolbar:
+            title: "Bottom-Nav... Activity"
+            right_action_items: [["dots-vertical", lambda x: x]]
 
-		MDBottomNavigation:
+        MDBottomNavigation:
 
-			OneNavScreen:
-				name: "one"
-				text: "One"
-				icon: "numeric-1"
+            NavOneScreen:
+                name: "one"
+                text: "One"
+                icon: "numeric-1"
 
-			TwoNavScreen:
-				name: "two"
-				text: "Two"
-				icon: "numeric-2"
+            NavTwoScreen:
+                name: "two"
+                text: "Two"
+                icon: "numeric-2"
 
-			ThreeNavScreen:
-				name: "three"
-				text: "Three"
-				icon: "numeric-3"
+            NavThreeScreen:
+                name: "three"
+                text: "Three"
+                icon: "numeric-3"

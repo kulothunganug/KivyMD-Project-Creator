@@ -5,12 +5,12 @@ from kivy.clock import Clock
 from kivy.factory import Factory
 from kivy.uix.screenmanager import ScreenManager
 
-utils.load_kv("root_screen.kv")
+utils.load_kv("root.kv")
 
 
 class Root(ScreenManager):
     """
-    The Root (or Assembler) of the app
+    The Root (or Assembler) of the App.
     """
 
     def __init__(self, **kwargs):
@@ -24,14 +24,13 @@ class Root(ScreenManager):
         """
         If you need to use more screens in your app,
         Create your screen files like below:
-            1. Create screen_name_py.py in libs/uix/baseclass/
-            2. Create screen_name_kv.kv in libs/uix/kv/
+            1. Create screen_name.py in libs/uix/baseclass/
+            2. Create screen_name.kv in libs/uix/kv/
             3. Add the screen details in screens.json like below:
                 {
-                    "from libs.uix.baseclass.screen_name_py import ScreenClassName": {
+                    "from libs.uix.baseclass.screen_name import ScreenClassName": {
                         "screen_name": "my_screen_name",
                         "factory": "Factory.ScreenClassName()",
-                        "kv_file": "screen_name_kv"
                     }
                 }
                 Note: In .JSON you must not use:

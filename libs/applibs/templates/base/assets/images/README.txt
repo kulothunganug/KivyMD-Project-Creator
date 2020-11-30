@@ -1,1 +1,1 @@
-Add Your Images Here
+Add Your Image Files Here.

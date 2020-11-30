@@ -4,7 +4,7 @@ import platform
 from kivy.core.window import Window
 from kivymd.app import MDApp
 
-from libs.uix.baseclass.root_screen import Root
+from libs.uix.baseclass.root import Root
 
 # This is needed for supporting Windows 10 with OpenGL < v2.0
 if platform.system() == "Windows":

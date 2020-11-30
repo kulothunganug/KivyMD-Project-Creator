@@ -1,13 +1,17 @@
 import os
+import sys
+
+root_dir = os.path.split(os.path.abspath(sys.argv[0]))[0]
+sys.path.insert(0, os.path.join(root_dir, "libs", "applibs"))
 import platform
 
+import utils
 from kivy.config import Config
 from kivy.core.window import Window
-from kivy.lang import Builder
 from kivy.logger import Logger
 from kivymd.app import MDApp
 
-from libs.uix.baseclass.root_screen import RootScreen
+from libs.uix.baseclass.root import Root
 
 __version__ = "v0.07.1a"
 
@@ -26,8 +30,8 @@ KV_DIR = f"{os.path.dirname(__file__)}/libs/kv/"
 Config.set("kivy", "exit_on_escape", "0")
 Config.set("input", "mouse", "mouse,disable_multitouch")
 
-Builder.load_file("libs/uix/kv/root_screen.kv")
-Builder.load_file("libs/uix/kv/home_screen.kv")
+utils.load_kv("root.kv")
+utils.load_kv("home_screen.kv")
 
 
 class MainApp(MDApp):
@@ -39,7 +43,7 @@ class MainApp(MDApp):
         self.theme_cls.theme_style = "Dark"
 
     def build(self):
-        FONT_PATH = "assets/fonts/"
+        FONT_PATH = os.path.join("assets", "fonts/")
 
         self.theme_cls.font_styles.update(
             {
@@ -78,7 +82,7 @@ class MainApp(MDApp):
                 ],
             }
         )
-        return RootScreen()
+        return Root()
 
 
 if __name__ == "__main__":
