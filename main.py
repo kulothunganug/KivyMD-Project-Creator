@@ -16,8 +16,6 @@ from libs.uix.baseclass.root import Root
 __version__ = "v0.08.1a"
 
 
-# this is needed for supporting Windows 10 with OpenGL < v2.0
-# Example: VirtualBox w/ OpenGL v1.1
 if platform.system() == "Windows":
     os.environ["KIVY_GL_BACKEND"] = "angle_sdl2"
 
