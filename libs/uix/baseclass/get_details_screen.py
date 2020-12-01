@@ -19,7 +19,7 @@ class GetDetailsScreen(MDScreen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.ignore_chars = "!\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ "
+        self.ignore_chars = "!\"#$%&'()*+,-./:;<=>?@[\]^`{|}~ "
         self.on_file_chooser_open = OnFileChooserOpen()
         Clock.schedule_once(self._late_init)
 
@@ -94,35 +94,37 @@ class GetDetailsScreen(MDScreen):
             and len(PATH_TO_PROJECT)
             and len(AUTHOR_NAME)
         ) == 0:
-            SweetAlert().fire("Please Fill Up All the Fields!", type="warning")
-            return
+            return SweetAlert().fire(
+                "Please Fill Up All the Fields!", type="warning"
+            )
 
+        chars = ""
         for char in list(self.ignore_chars):
             if char in PROJECT_NAME:
-                SweetAlert().fire(
-                    f"Please Don't Use '{char}' in Project Name",
-                    type="warning",
-                )
-                return
+                chars += char
+
+        if chars:
+            return SweetAlert().fire(
+                f"Please Don't Use '{chars}' in Project Name",
+                type="warning",
+            )
 
         FULL_PATH_TO_PROJECT = os.path.join(PATH_TO_PROJECT, PROJECT_NAME)
         project_name = PROJECT_NAME.lower()
 
         if os.path.exists(FULL_PATH_TO_PROJECT):
-            SweetAlert().fire(
+            return SweetAlert().fire(
                 f"Folder Named {project_name} is Already Exists! in '{PATH_TO_PROJECT}'",
                 type="warning",
             )
-            return
 
         if self.selected_template in [
             "navigation-drawer",
             "backdrop",
         ]:
-            SweetAlert().fire(
+            return SweetAlert().fire(
                 "This Template is Not Yet Available Now.", type="info"
             )
-            return
 
         TEMPLATE_FOLDER = os.path.join("libs", "applibs", "templates")
         utils.copytree(

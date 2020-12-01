@@ -4,11 +4,11 @@ import sys
 root_dir = os.path.split(os.path.abspath(sys.argv[0]))[0]
 sys.path.insert(0, os.path.join(root_dir, "libs", "applibs"))
 
-import json
-import traceback
+import json  # NOQA: E402
+import traceback  # NOQA: E402
 
-from kivy.factory import Factory
-from project_name import PROJECT_NAME
+from kivy.factory import Factory  # NOQA: E402
+from project_name import PROJECT_NAME  # NOQA: E402
 
 __version__ = "APPLICATION_VERSION"
 
