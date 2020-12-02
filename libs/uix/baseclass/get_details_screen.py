@@ -19,7 +19,7 @@ class GetDetailsScreen(MDScreen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.ignore_chars = "!\"#$%&'()*+,-./:;<=>?@[\]^`{|}~ "
+        self.ignore_chars = "!\"#$%&'()*+,-./:;<=>?@[\]^`{|}~ "  # NOQA: W605
         self.on_file_chooser_open = OnFileChooserOpen()
         Clock.schedule_once(self._late_init)
 
@@ -118,10 +118,7 @@ class GetDetailsScreen(MDScreen):
                 type="warning",
             )
 
-        if self.selected_template in [
-            "navigation-drawer",
-            "backdrop",
-        ]:
+        if self.selected_template == "backdrop":
             return SweetAlert().fire(
                 "This Template is Not Yet Available Now.", type="info"
             )
@@ -136,6 +133,8 @@ class GetDetailsScreen(MDScreen):
             os.path.join(FULL_PATH_TO_PROJECT, f"{project_name}.py"),
         )
 
+        PROJECT_UIX_FOLDER = os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix")
+
         if self.selected_template == "empty":
             EMPTY_KV_FILES = utils.get_files(
                 os.path.join(TEMPLATE_FOLDER, "empty"), [".kv"]
@@ -143,7 +142,7 @@ class GetDetailsScreen(MDScreen):
             for kv_file in EMPTY_KV_FILES:
                 shutil.copy(
                     kv_file,
-                    os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix", "kv"),
+                    os.path.join(PROJECT_UIX_FOLDER, "kv"),
                 )
         elif self.selected_template == "basic":
             BASIC_KV_FILES = utils.get_files(
@@ -152,7 +151,7 @@ class GetDetailsScreen(MDScreen):
             for kv_file in BASIC_KV_FILES:
                 shutil.copy(
                     kv_file,
-                    os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix", "kv"),
+                    os.path.join(PROJECT_UIX_FOLDER, "kv"),
                 )
         elif self.selected_template == "bottom-navigation":
             BOTTOM_NAV_FOLDER = os.path.join(
@@ -163,14 +162,12 @@ class GetDetailsScreen(MDScreen):
             for py_file in BOTTOM_NAV_PY_FILES:
                 shutil.copy(
                     py_file,
-                    os.path.join(
-                        FULL_PATH_TO_PROJECT, "libs", "uix", "baseclass"
-                    ),
+                    os.path.join(PROJECT_UIX_FOLDER, "baseclass"),
                 )
             for kv_file in BOTTOM_NAV_KV_FILES:
                 shutil.copy(
                     kv_file,
-                    os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix", "kv"),
+                    os.path.join(PROJECT_UIX_FOLDER, "kv"),
                 )
         elif self.selected_template == "tab":
             TAB_FOLDER = os.path.join(TEMPLATE_FOLDER, "tab")
@@ -179,14 +176,28 @@ class GetDetailsScreen(MDScreen):
             for py_file in TAB_PY_FILES:
                 shutil.copy(
                     py_file,
-                    os.path.join(
-                        FULL_PATH_TO_PROJECT, "libs", "uix", "baseclass"
-                    ),
+                    os.path.join(PROJECT_UIX_FOLDER, "baseclass"),
                 )
             for kv_file in TAB_KV_FILES:
                 shutil.copy(
                     kv_file,
-                    os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix", "kv"),
+                    os.path.join(PROJECT_UIX_FOLDER, "kv"),
+                )
+        elif self.selected_template == "navigation-drawer":
+            NAV_DRAWER_FOLDER = os.path.join(
+                TEMPLATE_FOLDER, "navigation-drawer"
+            )
+            NAV_DRAWER_PY_FILES = utils.get_files(NAV_DRAWER_FOLDER, [".py"])
+            NAV_DRAWER_KV_FILES = utils.get_files(NAV_DRAWER_FOLDER, [".kv"])
+            for py_file in NAV_DRAWER_PY_FILES:
+                shutil.copy(
+                    py_file,
+                    os.path.join(PROJECT_UIX_FOLDER, "baseclass"),
+                )
+            for kv_file in NAV_DRAWER_KV_FILES:
+                shutil.copy(
+                    kv_file,
+                    os.path.join(PROJECT_UIX_FOLDER, "kv"),
                 )
 
         for file in utils.get_files(FULL_PATH_TO_PROJECT, [".py", ".spec"]):
@@ -208,7 +219,7 @@ class GetDetailsScreen(MDScreen):
 
         SweetAlert().fire(
             "Congrat's",
-            f"Project {PROJECT_NAME} Has Been Created Successfully!",
+            f"Project '{PROJECT_NAME}' Has Been Created Successfully!",
             type="success",
         )
 

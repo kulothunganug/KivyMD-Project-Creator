@@ -1,0 +1,11 @@
+<HomeScreen>
+
+    MDBoxLayout:
+        orientation: "vertical"
+
+        MDToolbar:
+            title: "Nav-Drawer Activity"
+            left_action_items: [["menu", lambda x: root.manager.parent.ids.nav_drawer.set_state()]]
+            right_action_items: [["dots-vertical", lambda x: x]]
+
+        Widget:
