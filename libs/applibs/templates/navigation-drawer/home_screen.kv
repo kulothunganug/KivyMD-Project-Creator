@@ -1,3 +1,5 @@
+#: import ContentNavigationDrawer libs.uix.baseclass.content_nav_drawer.ContentNavigationDrawer
+
 <HomeScreen>
 
     MDBoxLayout:
@@ -5,7 +7,12 @@
 
         MDToolbar:
             title: "Nav-Drawer Activity"
-            left_action_items: [["menu", lambda x: root.manager.parent.ids.nav_drawer.set_state()]]
+            left_action_items: [["menu", lambda x: nav_drawer.set_state()]]
             right_action_items: [["dots-vertical", lambda x: x]]
 
         Widget:
+
+    NavigationLayout:
+
+        ContentNavigationDrawer:
+            id: nav_drawer

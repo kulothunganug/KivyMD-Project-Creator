@@ -36,6 +36,7 @@ class MainApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.title = "KivyMD Project Creator"
+        self.icon = "assets/images/logo.png"
         self.theme_cls.primary_palette = "Purple"
         self.theme_cls.primary_hue = "400"
         self.theme_cls.theme_style = "Dark"
