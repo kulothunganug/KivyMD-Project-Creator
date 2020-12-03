@@ -1,3 +1,5 @@
+import os
+
 import utils
 from kivy.graphics import Color, RoundedRectangle
 from kivy.properties import BooleanProperty, StringProperty
@@ -9,6 +11,10 @@ from kivymd.uix.screen import MDScreen
 
 
 class TemplatesScreen(MDScreen):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.templates_folder = os.path.join("libs", "applibs", "templates")
+
     def change_to_home(self):
         self.manager.current = "home"
 
@@ -22,9 +28,19 @@ class TemplatesScreen(MDScreen):
 
         for widget in self.ids.container.children:
             if widget.state == "down":
-                self.manager.get_screen(
-                    "get_details"
-                ).selected_template = widget.name
+                template_name = widget.name
+                get_details = self.manager.get_screen("get_details")
+                get_details.selected_template = template_name
+                SELECTED_TEMPLATE_FOLDER = os.path.join(
+                    self.templates_folder, template_name
+                )
+                get_details.template_py_files = utils.get_files(
+                    SELECTED_TEMPLATE_FOLDER, [".py"]
+                )
+                get_details.template_kv_files = utils.get_files(
+                    SELECTED_TEMPLATE_FOLDER, [".kv"]
+                )
+
                 self.manager.current = "get_details"
                 break
 

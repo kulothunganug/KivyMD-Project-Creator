@@ -2,7 +2,7 @@ import os
 import shutil
 
 from kivy.clock import Clock
-from kivy.properties import ColorProperty, StringProperty
+from kivy.properties import ColorProperty, ListProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.color_definitions import hue, palette
 from kivymd.uix.dialog import BaseDialog
@@ -16,11 +16,16 @@ from libs.applibs import utils
 
 class GetDetailsScreen(MDScreen):
     selected_template = StringProperty()
+    template_py_files = ListProperty()
+    template_kv_files = ListProperty()
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.ignore_chars = "!\"#$%&'()*+,-./:;<=>?@[\]^`{|}~ "  # NOQA: W605
         self.on_file_chooser_open = OnFileChooserOpen()
+        self.BASE_TEMPLATE_FOLDER = os.path.join(
+            "libs", "applibs", "templates", "base"
+        )
         Clock.schedule_once(self._late_init)
 
     def _late_init(self, interval):
@@ -73,6 +78,7 @@ class GetDetailsScreen(MDScreen):
         _path_to_project,
         _author_name,
     ):
+
         (
             APPLICATION_TITLE,
             PROJECT_NAME,
@@ -123,10 +129,7 @@ class GetDetailsScreen(MDScreen):
                 "This Template is Not Yet Available Now.", type="info"
             )
 
-        TEMPLATE_FOLDER = os.path.join("libs", "applibs", "templates")
-        utils.copytree(
-            os.path.join(TEMPLATE_FOLDER, "base"), FULL_PATH_TO_PROJECT
-        )
+        utils.copytree(self.BASE_TEMPLATE_FOLDER, FULL_PATH_TO_PROJECT)
 
         os.rename(
             os.path.join(FULL_PATH_TO_PROJECT, "project_name.py"),
@@ -135,70 +138,16 @@ class GetDetailsScreen(MDScreen):
 
         PROJECT_UIX_FOLDER = os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix")
 
-        if self.selected_template == "empty":
-            EMPTY_KV_FILES = utils.get_files(
-                os.path.join(TEMPLATE_FOLDER, "empty"), [".kv"]
+        for py_file in self.template_py_files:
+            shutil.copy(
+                py_file,
+                os.path.join(PROJECT_UIX_FOLDER, "baseclass"),
             )
-            for kv_file in EMPTY_KV_FILES:
-                shutil.copy(
-                    kv_file,
-                    os.path.join(PROJECT_UIX_FOLDER, "kv"),
-                )
-        elif self.selected_template == "basic":
-            BASIC_KV_FILES = utils.get_files(
-                os.path.join(TEMPLATE_FOLDER, "basic"), [".kv"]
+        for kv_file in self.template_kv_files:
+            shutil.copy(
+                kv_file,
+                os.path.join(PROJECT_UIX_FOLDER, "kv"),
             )
-            for kv_file in BASIC_KV_FILES:
-                shutil.copy(
-                    kv_file,
-                    os.path.join(PROJECT_UIX_FOLDER, "kv"),
-                )
-        elif self.selected_template == "bottom-navigation":
-            BOTTOM_NAV_FOLDER = os.path.join(
-                TEMPLATE_FOLDER, "bottom-navigation"
-            )
-            BOTTOM_NAV_PY_FILES = utils.get_files(BOTTOM_NAV_FOLDER, [".py"])
-            BOTTOM_NAV_KV_FILES = utils.get_files(BOTTOM_NAV_FOLDER, [".kv"])
-            for py_file in BOTTOM_NAV_PY_FILES:
-                shutil.copy(
-                    py_file,
-                    os.path.join(PROJECT_UIX_FOLDER, "baseclass"),
-                )
-            for kv_file in BOTTOM_NAV_KV_FILES:
-                shutil.copy(
-                    kv_file,
-                    os.path.join(PROJECT_UIX_FOLDER, "kv"),
-                )
-        elif self.selected_template == "tab":
-            TAB_FOLDER = os.path.join(TEMPLATE_FOLDER, "tab")
-            TAB_PY_FILES = utils.get_files(TAB_FOLDER, [".py"])
-            TAB_KV_FILES = utils.get_files(TAB_FOLDER, [".kv"])
-            for py_file in TAB_PY_FILES:
-                shutil.copy(
-                    py_file,
-                    os.path.join(PROJECT_UIX_FOLDER, "baseclass"),
-                )
-            for kv_file in TAB_KV_FILES:
-                shutil.copy(
-                    kv_file,
-                    os.path.join(PROJECT_UIX_FOLDER, "kv"),
-                )
-        elif self.selected_template == "navigation-drawer":
-            NAV_DRAWER_FOLDER = os.path.join(
-                TEMPLATE_FOLDER, "navigation-drawer"
-            )
-            NAV_DRAWER_PY_FILES = utils.get_files(NAV_DRAWER_FOLDER, [".py"])
-            NAV_DRAWER_KV_FILES = utils.get_files(NAV_DRAWER_FOLDER, [".kv"])
-            for py_file in NAV_DRAWER_PY_FILES:
-                shutil.copy(
-                    py_file,
-                    os.path.join(PROJECT_UIX_FOLDER, "baseclass"),
-                )
-            for kv_file in NAV_DRAWER_KV_FILES:
-                shutil.copy(
-                    kv_file,
-                    os.path.join(PROJECT_UIX_FOLDER, "kv"),
-                )
 
         for file in utils.get_files(FULL_PATH_TO_PROJECT, [".py", ".spec"]):
             utils.edit_file(
