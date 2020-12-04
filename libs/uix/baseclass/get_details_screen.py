@@ -118,6 +118,13 @@ class GetDetailsScreen(MDScreen):
         FULL_PATH_TO_PROJECT = os.path.join(PATH_TO_PROJECT, PROJECT_NAME)
         project_name = PROJECT_NAME.lower()
 
+        if not os.path.exists(PATH_TO_PROJECT):
+            return SweetAlert().fire(
+                f"Folder Path not Exists!",
+                PATH_TO_PROJECT,
+                type="warning",
+            )
+
         if os.path.exists(FULL_PATH_TO_PROJECT):
             return SweetAlert().fire(
                 f"Folder Named {project_name} is Already Exists! in '{PATH_TO_PROJECT}'",
