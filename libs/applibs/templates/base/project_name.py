@@ -12,7 +12,6 @@ if platform.system() == "Windows":
 
 
 class PROJECT_NAME(MDApp):
-    title = "PROJECT_NAME"
 
     def __init__(self, **kwargs):
         super(PROJECT_NAME, self).__init__(**kwargs)
