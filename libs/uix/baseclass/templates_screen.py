@@ -31,15 +31,16 @@ class TemplatesScreen(MDScreen):
                 template_name = widget.name
                 get_details = self.manager.get_screen("get_details")
                 get_details.selected_template = template_name
-                SELECTED_TEMPLATE_FOLDER = os.path.join(
-                    self.templates_folder, template_name
-                )
-                get_details.template_py_files = utils.get_files(
-                    SELECTED_TEMPLATE_FOLDER, [".py"]
-                )
-                get_details.template_kv_files = utils.get_files(
-                    SELECTED_TEMPLATE_FOLDER, [".kv"]
-                )
+                if template_name != "backdrop":
+                    SELECTED_TEMPLATE_FOLDER = os.path.join(
+                        self.templates_folder, template_name
+                    )
+                    get_details.template_py_files = utils.get_files(
+                        SELECTED_TEMPLATE_FOLDER, [".py"]
+                    )
+                    get_details.template_kv_files = utils.get_files(
+                        SELECTED_TEMPLATE_FOLDER, [".kv"]
+                    )
 
                 self.manager.current = "get_details"
                 break
