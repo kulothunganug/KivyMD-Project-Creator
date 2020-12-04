@@ -38,28 +38,42 @@
                     text: "Basic"
                     font_style: "H6"
                     halign: "left"
+
                 MDSeparator:
+
                 CustomTextField:
                     id: application_title
                     icon_left: "rename-box"
                     hint_text: "Application Title"
                     on_info_press: SweetAlert().fire("Application Title", "Title of the App.")
+
                 CustomTextField:
                     id: project_name
                     icon_left: "script-text"
                     hint_text: "Project Name"
                     on_info_press: SweetAlert().fire("Project Name", f"Name of the Project, Must Not Contain '{root.ignore_chars}'")
+
                 CustomTextField:
                     id: application_version
                     icon_left: "alpha-v"
                     hint_text: "Application Version"
                     on_info_press: SweetAlert().fire("Application Version", "Version of the Project.\nA Good Versioning Will Be MAJOR.MINOR.PATCH (ex: 0.1.3)")
-                CustomTextField:
-                    id: path_to_project
-                    icon_left: "folder"
-                    hint_text: "Path to Project"
-                    on_focus: root.open_file_manager(self)
-                    on_info_press: SweetAlert().fire("Path to Project", "Path to Create the Project.")
+
+                MDBoxLayout:
+                    spacing: dp(20)
+                    adaptive_height: True
+
+                    CustomTextField:
+                        id: path_to_project
+                        icon_left: "folder"
+                        hint_text: "Path to Project"
+                        on_info_press: SweetAlert().fire("Path to Project", "Path to Create the Project.")
+
+                    MDFlatButton:
+                        text: "Select Path"
+                        pos_hint: {"center_x": .5, "center_y": .5}
+                        on_release: root.open_file_manager()
+
                 CustomTextField:
                     id: author_name
                     icon_left: "face"
@@ -118,16 +132,14 @@
             adaptive_size: True
             orientation: "vertical"
 
-            MDDropDownItem:
+            DropDownItem:
                 id: primary_palette
                 text: "Blue"
-                current_item: "Blue"
                 on_release: root.parent.parent.parent.parent.parent.primary_palette_menu.open()
 
-            MDDropDownItem:
+            DropDownItem:
                 id: primary_hue
                 text: "500"
-                current_item: "500"
                 on_release: root.parent.parent.parent.parent.parent.primary_hue_menu.open()
 
         ColorWidget:
@@ -152,16 +164,14 @@
             adaptive_size: True
             orientation: "vertical"
 
-            MDDropDownItem:
+            DropDownItem:
                 id: accent_palette
                 text: "Amber"
-                current_item: "Amber"
                 on_release: root.parent.parent.parent.parent.parent.accent_palette_menu.open()
 
-            MDDropDownItem:
+            DropDownItem:
                 id: accent_hue
                 text: "500"
-                current_item: "500"
                 on_release: root.parent.parent.parent.parent.parent.accent_hue_menu.open()
 
         ColorWidget:
@@ -186,17 +196,19 @@
             orientation: "vertical"
             adaptive_size: True
 
-            MDDropDownItem:
+            DropDownItem:
                 id: theme_style
                 text: "Light"
-                current_item: "Light"
                 on_release: root.parent.parent.parent.parent.parent.theme_style_menu.open()
 
-            MDDropDownItem: # dummy
+            DropDownItem: # dummy
                 opacity: 0
 
         ColorWidget:
             rgba_color: "FAFAFA" if theme_style.current_item == "Light" else "121212"
+
+<DropDownItem@MDDropDownItem>
+    current_item: self.text
 
 <ColorWidget>
     size_hint_x: None
@@ -207,7 +219,7 @@
         RoundedRectangle:
             size: self.size
             pos: self.pos
-            radius: [10,]
+            radius: [dp(10),]
 
 <OnFileChooserOpen>
 

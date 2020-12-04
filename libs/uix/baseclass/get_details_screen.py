@@ -124,11 +124,6 @@ class GetDetailsScreen(MDScreen):
                 type="warning",
             )
 
-        if self.selected_template == "backdrop":
-            return SweetAlert().fire(
-                "This Template is Not Yet Available Now.", type="info"
-            )
-
         utils.copytree(self.BASE_TEMPLATE_FOLDER, FULL_PATH_TO_PROJECT)
 
         os.rename(
@@ -192,15 +187,13 @@ class GetDetailsScreen(MDScreen):
         self.ids.theme_style.ids.theme_style.set_item(instance_menu_item.text)
         instance_menu.dismiss()
 
-    def open_file_manager(self, text_input_instance):
+    def open_file_manager(self):
         def _open_file_chooser(i):
             filechooser.choose_dir(on_selection=self.on_path_selection)
-            text_input_instance.focus = False
             self.on_file_chooser_open.dismiss()
 
-        if text_input_instance.focus:
-            self.on_file_chooser_open.open()
-            Clock.schedule_once(_open_file_chooser, 0.3)
+        self.on_file_chooser_open.open()
+        Clock.schedule_once(_open_file_chooser, 0.3)
 
     def on_path_selection(self, path):
         self.ids.path_to_project.text = path[0]
