@@ -13,7 +13,7 @@ from kivymd.app import MDApp
 
 from libs.uix.baseclass.root import Root
 
-__version__ = "v0.1.3b"
+__version__ = "v0.1.4b"
 
 
 if platform.system() == "Windows":
