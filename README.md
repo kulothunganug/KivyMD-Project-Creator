@@ -27,6 +27,3 @@ pip install https://github.com/kivymd/KivyMD/archive/master.zip
 pip install -r requirements.txt
 ```
 and run it via `python main.py`
-
-## TODO
-- Create New Templates (like `navigation-drawer`, `backdrop` etc...)
