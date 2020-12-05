@@ -5,4 +5,6 @@ utils.load_kv("btnav_two.kv")
 
 
 class BTNavTwo(MDBottomNavigationItem):
-    pass
+    """
+    Bottom Navigation Item Two.
+    """

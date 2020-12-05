@@ -6,4 +6,6 @@ utils.load_kv("tab_two.kv")
 
 
 class TabTwo(FloatLayout, MDTabsBase):
-    pass
+    """
+    Tab Item Two.
+    """

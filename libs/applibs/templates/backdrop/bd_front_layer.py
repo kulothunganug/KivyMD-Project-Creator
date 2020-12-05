@@ -5,4 +5,6 @@ utils.load_kv("bd_front_layer.kv")
 
 
 class BackdropFrontLayer(MDBoxLayout):
-    pass
+    """
+    Content for Backdrop's Front Layer.
+    """

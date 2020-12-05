@@ -5,4 +5,6 @@ utils.load_kv("content_nav_drawer.kv")
 
 
 class ContentNavigationDrawer(MDNavigationDrawer):
-    pass
+    """
+    Content for NavigationDrawer.
+    """
