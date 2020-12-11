@@ -24,9 +24,11 @@ Builder.load_string(
     background_normal: f'{images_path}transparent.png'
     foreground_color: self.theme_cls.text_color
     padding:
-        self._lbl_icon_left.texture_size[1] + dp(10) if self.icon_left else dp(15), \
+        self._lbl_icon_left.texture_size[1] + dp(10) \
+        if self.icon_left else dp(15), \
         (self.height / 2) - (self.line_height / 2), \
-        self._lbl_icon_right.texture_size[1] + dp(20) if self.icon_right else dp(15), \
+        self._lbl_icon_right.texture_size[1] + dp(20) \
+        if self.icon_right else dp(15), \
         0
 
     canvas.before:
@@ -69,7 +71,8 @@ Builder.load_string(
                 self._lbl_icon_right.texture_size if self.icon_right \
                 else (0, 0)
             pos:
-                (self.width + self.x) - (self._lbl_icon_right.texture_size[1]), \
+                (self.width + self.x) \
+                - (self._lbl_icon_right.texture_size[1]), \
                 self.center[1] - self._lbl_icon_right.texture_size[1] / 2
 
         Color:

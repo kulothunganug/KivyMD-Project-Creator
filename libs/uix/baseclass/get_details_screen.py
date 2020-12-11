@@ -35,7 +35,7 @@ class GetDetailsScreen(MDScreen):
             items=menu_items,
             width_mult=3,
         )
-        self.primary_palette_menu.bind(on_release=self.set_primary_palette_item)
+        self.primary_palette_menu.bind(on_release=self.set_primary_palette_item)  # NOQA: E501
 
         self.accent_palette_menu = MDDropdownMenu(
             caller=self.ids.accent.ids.accent_palette,
@@ -120,14 +120,14 @@ class GetDetailsScreen(MDScreen):
 
         if not os.path.exists(PATH_TO_PROJECT):
             return SweetAlert().fire(
-                f"Folder Path not Exists!",
+                "Folder Path not Exists!",
                 PATH_TO_PROJECT,
                 type="warning",
             )
 
         if os.path.exists(FULL_PATH_TO_PROJECT):
             return SweetAlert().fire(
-                f"Folder Named {project_name} is Already Exists! in '{PATH_TO_PROJECT}'",
+                f"Folder Named {project_name} is Already Exists! in '{PATH_TO_PROJECT}'",  # NOQA: E501
                 type="warning",
             )
 
@@ -160,11 +160,11 @@ class GetDetailsScreen(MDScreen):
                     "project_name": project_name,
                     "APPLICATION_VERSION": APPLICATION_VERSION,
                     "AUTHOR_NAME": AUTHOR_NAME,
-                    "PRIMARY_PALETTE": self.ids.primary.ids.primary_palette.current_item,
-                    "PRIMARY_HUE": self.ids.primary.ids.primary_hue.current_item,
-                    "ACCENT_PALETTE": self.ids.accent.ids.accent_palette.current_item,
+                    "PRIMARY_PALETTE": self.ids.primary.ids.primary_palette.current_item,  # NOQA: E501
+                    "PRIMARY_HUE": self.ids.primary.ids.primary_hue.current_item,  # NOQA: E501
+                    "ACCENT_PALETTE": self.ids.accent.ids.accent_palette.current_item,  # NOQA: E501
                     "ACCENT_HUE": self.ids.accent.ids.accent_hue.current_item,
-                    "THEME_STYLE": self.ids.theme_style.ids.theme_style.current_item,
+                    "THEME_STYLE": self.ids.theme_style.ids.theme_style.current_item,  # NOQA: E501
                 },
             )
 

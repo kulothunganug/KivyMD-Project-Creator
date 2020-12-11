@@ -1,7 +1,6 @@
 import os
 
 import utils
-from kivy.graphics import Color, RoundedRectangle
 from kivy.properties import BooleanProperty, StringProperty
 from kivy.uix.behaviors import ToggleButtonBehavior
 from kivymd.theming import ThemableBehavior
