@@ -1,16 +1,21 @@
 # KivyMD Project Creator
 A GUI Based Tool to Create Project for [KivyMD](https://github.com/kivymd/KivyMD)
 
-
-| Template               | Availability |
-| ---------------------- | ------------ |
-| Empty                  | ✔            |
-| Basic                  | ✔            |
-| Bottom-Navigation      | ✔            |
-| Tab                    | ✔            |
-| Navigation-Drawer      | ✔            |
-| Backdrop               | ✔            |
-
+## Features
+* Ready-to-start a new project with various templates and theme customization.
+* Automatically creates (optionally) `.gitignore`, `README.md`, `LICENSE` for `git` purposes.
+* Creates `buildozer.spec` that already filled up.
+* Gives better source code management (Folder Structure 👇).
+```
+project_name (Base Project Files)
+|____libs (Code files)
+| |____uix (UI files)
+| | |____baseclass (PY files)
+| | |____kv (KV files)
+| | |____custom_uix (Custom UIX)
+| |____applibs (Custom Modules files)
+|____assets (Images and Font files)
+```
 
 ## Dependencies
 - [Python 3.6+](https://www.python.org/)
