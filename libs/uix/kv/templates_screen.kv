@@ -35,8 +35,24 @@
 <CustomImage>
     orientation: "vertical"
     adaptive_height: True
+    allow_no_selection: False
+    group: "activites"
     spacing: dp(10)
     padding: dp(5)
+
+    canvas:
+        Color:
+            rgba: (0, 0, 0, 0) if self.state == "normal" else self.theme_cls.primary_dark
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+
+    canvas.before:
+        Color:
+            rgba: self.theme_cls.bg_dark if self.hovered else (0, 0, 0, 0)
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
 
     Image:
         source: "assets/images/templates/" + root.name + ".png"

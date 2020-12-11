@@ -50,31 +50,3 @@ class CustomImage(
 ):
     name = StringProperty()
     use_toggle_behavior = BooleanProperty(True)
-
-    def __init__(self, **kwargs):
-        super(CustomImage, self).__init__(**kwargs)
-        self.allow_no_selection = False
-        self.group = "activites"
-
-    def on_state(self, instance, state):
-        if self.use_toggle_behavior:
-            if state == "normal":
-                with self.canvas.before:
-                    Color(rgba=self.theme_cls.bg_normal)
-                    RoundedRectangle(pos=self.pos, size=self.size)
-            elif state == "down":
-                with self.canvas.before:
-                    Color(rgba=self.theme_cls.primary_dark)
-                    RoundedRectangle(pos=self.pos, size=self.size)
-
-    def on_enter(self):
-        if self.state == "normal" and self.use_toggle_behavior:
-            with self.canvas.before:
-                Color(rgba=self.theme_cls.bg_dark)
-                RoundedRectangle(size=self.size, pos=self.pos)
-
-    def on_leave(self):
-        if self.state == "normal" and self.use_toggle_behavior:
-            with self.canvas.before:
-                Color(rgba=self.theme_cls.bg_normal)
-                RoundedRectangle(pos=self.pos, size=self.size)
