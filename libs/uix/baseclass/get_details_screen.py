@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 import shutil
 
@@ -26,6 +27,7 @@ class GetDetailsScreen(MDScreen):
         self.BASE_TEMPLATE_FOLDER = os.path.join(
             "libs", "applibs", "templates", "base"
         )
+        self.MISC_FOLDER = os.path.join("libs", "applibs", "misc")
         Clock.schedule_once(self._late_init)
 
     def _late_init(self, interval):
@@ -35,7 +37,9 @@ class GetDetailsScreen(MDScreen):
             items=menu_items,
             width_mult=3,
         )
-        self.primary_palette_menu.bind(on_release=self.set_primary_palette_item)  # NOQA: E501
+        self.primary_palette_menu.bind(
+            on_release=self.set_primary_palette_item
+        )  # NOQA: E501
 
         self.accent_palette_menu = MDDropdownMenu(
             caller=self.ids.accent.ids.accent_palette,
@@ -116,6 +120,7 @@ class GetDetailsScreen(MDScreen):
             )
 
         FULL_PATH_TO_PROJECT = os.path.join(PATH_TO_PROJECT, PROJECT_NAME)
+        self.path_to_project = FULL_PATH_TO_PROJECT
         project_name = PROJECT_NAME.lower()
 
         if not os.path.exists(PATH_TO_PROJECT):
@@ -168,11 +173,35 @@ class GetDetailsScreen(MDScreen):
                 },
             )
 
+        if self.ids.gitignore.active:
+            shutil.copy(
+                os.path.join(self.MISC_FOLDER, ".gitignore"),
+                FULL_PATH_TO_PROJECT,
+            )
+        if self.ids.readme.active:
+            self.edit_misc_file("README.md", {"PROJECT_NAME": PROJECT_NAME})
+        if self.ids.license.active:
+            self.edit_misc_file(
+                "LICENSE",
+                {
+                    "YEAR": str(datetime.now().year),
+                    "COPYRIGHT_HOLDER": AUTHOR_NAME,
+                },
+            )
+
         SweetAlert().fire(
             "Congrat's",
             f"Project '{PROJECT_NAME}' Has Been Created Successfully!",
             type="success",
         )
+
+    def edit_misc_file(self, file, values):
+        misc_file = os.path.join(self.MISC_FOLDER, file)
+        shutil.copy(
+            misc_file,
+            self.path_to_project,
+        )
+        utils.edit_file(in_file=misc_file, values=values)
 
     def set_primary_palette_item(self, instance_menu, instance_menu_item):
         self.ids.primary.ids.primary_palette.set_item(instance_menu_item.text)

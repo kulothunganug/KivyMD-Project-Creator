@@ -1,8 +1,9 @@
 #: import gch kivy.utils.get_color_from_hex
-#: import F kivy.factory.Factory
 #: import images_path kivymd.images_path
 #: import colors kivymd.color_definitions.colors
+
 #: import SweetAlert kivymd_extensions.sweetalert.SweetAlert
+
 #: import TextFieldRound libs.uix.custom_uix.textfield.TextFieldRound
 #: import CustomImage libs.uix.baseclass.templates_screen.CustomImage
 
@@ -27,62 +28,60 @@
                 width: dp(200)
                 pos_hint: {"center_x": .5, "center_y": .5}
 
-            MDBoxLayout:
-                orientation: "vertical"
-                adaptive_height: True
-                spacing: dp(10)
-                padding: dp(20)
-                pos_hint: {"center_x": .5, "center_y": .5}
-
-                CustomLabel:
-                    text: "Basic"
-                    font_style: "H6"
-                    halign: "left"
-
-                MDSeparator:
-
-                CustomTextField:
-                    id: application_title
-                    icon_left: "rename-box"
-                    hint_text: "Application Title"
-                    on_info_press: SweetAlert().fire("Application Title", "Title of the App.")
-
-                CustomTextField:
-                    id: project_name
-                    icon_left: "script-text"
-                    hint_text: "Project Name"
-                    on_info_press: SweetAlert().fire("Project Name", f"Name of the Project, Must Not Contain '{root.ignore_chars}'")
-
-                CustomTextField:
-                    id: application_version
-                    icon_left: "alpha-v"
-                    hint_text: "Application Version"
-                    on_info_press: SweetAlert().fire("Application Version", "Version of the Project.\nA Good Versioning Will Be MAJOR.MINOR.PATCH (ex: 0.1.3)")
-
-                MDBoxLayout:
-                    spacing: dp(20)
-                    adaptive_height: True
-
-                    CustomTextField:
-                        id: path_to_project
-                        icon_left: "folder"
-                        hint_text: "Path to Project"
-                        on_info_press: SweetAlert().fire("Path to Project", "Path to Create the Project.")
-
-                    MDFlatButton:
-                        text: "Select Path"
-                        pos_hint: {"center_x": .5, "center_y": .5}
-                        on_release: root.open_file_manager()
-
-                CustomTextField:
-                    id: author_name
-                    icon_left: "face"
-                    hint_text: "Author Name"
-                    on_info_press: SweetAlert().fire("Author Name", "Name of the Author of the Project.")
+            ScrollView:
 
                 MDBoxLayout:
                     orientation: "vertical"
                     adaptive_height: True
+                    spacing: dp(10)
+                    padding: dp(20)
+                    pos_hint: {"center_x": .5, "center_y": .5}
+
+                    CustomLabel:
+                        text: "Basic"
+                        font_style: "H6"
+                        halign: "left"
+
+                    MDSeparator:
+
+                    CustomTextField:
+                        id: application_title
+                        icon_left: "rename-box"
+                        hint_text: "Application Title"
+                        on_info_press: SweetAlert().fire("Application Title", "Title of the App.")
+
+                    CustomTextField:
+                        id: project_name
+                        icon_left: "script-text"
+                        hint_text: "Project Name"
+                        on_info_press: SweetAlert().fire("Project Name", f"Name of the Project, Must Not Contain '{root.ignore_chars}'")
+
+                    CustomTextField:
+                        id: application_version
+                        icon_left: "alpha-v"
+                        hint_text: "Application Version"
+                        on_info_press: SweetAlert().fire("Application Version", "Version of the Project.\nA Good Versioning Will Be MAJOR.MINOR.PATCH (ex: 0.1.3)")
+
+                    MDBoxLayout:
+                        spacing: dp(20)
+                        adaptive_height: True
+
+                        CustomTextField:
+                            id: path_to_project
+                            icon_left: "folder"
+                            hint_text: "Path to Project"
+                            on_info_press: SweetAlert().fire("Path to Project", "Path to Create the Project.")
+
+                        MDFlatButton:
+                            text: "Select Path"
+                            pos_hint: {"center_x": .5, "center_y": .5}
+                            on_release: root.open_file_manager()
+
+                    CustomTextField:
+                        id: author_name
+                        icon_left: "face"
+                        hint_text: "Author Name"
+                        on_info_press: SweetAlert().fire("Author Name", "Name of the Author of the Project.")
 
                     CustomLabel:
                         text: "Theming"
@@ -91,28 +90,50 @@
 
                     MDSeparator:
 
-                MDBoxLayout:
-                    adaptive_height: True
-                    padding: (dp(100), 0, dp(100), 0)
+                    MDBoxLayout:
+                        adaptive_height: True
+                        padding: (dp(100), 0, dp(100), 0)
 
-                    PrimaryTheming:
-                        id: primary
-                    Widget:
-                    AccentTheming:
-                        id: accent
-                    Widget:
-                    ThemeStyleTheming:
-                        id: theme_style
+                        PrimaryTheming:
+                            id: primary
+                        Widget:
+                        AccentTheming:
+                            id: accent
+                        Widget:
+                        ThemeStyleTheming:
+                            id: theme_style
 
-                MDBoxLayout:
-                    adaptive_height: True
+                    CustomLabel:
+                        text: "Miscellaneous"
+                        font_style: "H6"
+                        halign: "left"
 
-                    Widget:
+                    MDSeparator:
 
-                    MDRaisedButton:
-                        text: "Create Project"
-                        on_release:
-                            root.create_project(application_title.text, project_name.text, application_version.text, path_to_project.text, author_name.text)
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        adaptive_height: True
+                        spacing: "20dp"
+
+                        MiscCheck:
+                            id: gitignore
+                            text: "Add .gitignore"
+                        MiscCheck:
+                            id: readme
+                            text: "Add README.md"
+                        MiscCheck:
+                            id: license
+                            text: "Add LICENSE"
+
+                    MDBoxLayout:
+                        adaptive_height: True
+
+                        Widget:
+
+                        MDRaisedButton:
+                            text: "Create Project"
+                            on_release:
+                                root.create_project(application_title.text, project_name.text, application_version.text, path_to_project.text, author_name.text)
 
 <CustomTextField@TextFieldRound>
     icon_right: "information-variant"
@@ -139,12 +160,12 @@
             DropDownItem:
                 id: primary_palette
                 text: "Blue"
-                on_release: root.parent.parent.parent.parent.parent.primary_palette_menu.open()
+                on_release: root.parent.parent.parent.parent.parent.parent.primary_palette_menu.open()
 
             DropDownItem:
                 id: primary_hue
                 text: "500"
-                on_release: root.parent.parent.parent.parent.parent.primary_hue_menu.open()
+                on_release: root.parent.parent.parent.parent.parent.parent.primary_hue_menu.open()
 
         ColorWidget:
             rgba_color: colors[primary_palette.current_item][primary_hue.current_item] if primary_palette.current_item else "FFFFFF"
@@ -171,12 +192,12 @@
             DropDownItem:
                 id: accent_palette
                 text: "Amber"
-                on_release: root.parent.parent.parent.parent.parent.accent_palette_menu.open()
+                on_release: root.parent.parent.parent.parent.parent.parent.accent_palette_menu.open()
 
             DropDownItem:
                 id: accent_hue
                 text: "500"
-                on_release: root.parent.parent.parent.parent.parent.accent_hue_menu.open()
+                on_release: root.parent.parent.parent.parent.parent.parent.accent_hue_menu.open()
 
         ColorWidget:
             rgba_color: colors[accent_palette.current_item][accent_hue.current_item] if accent_palette.current_item else "FFFFFF"
@@ -203,7 +224,7 @@
             DropDownItem:
                 id: theme_style
                 text: "Light"
-                on_release: root.parent.parent.parent.parent.parent.theme_style_menu.open()
+                on_release: root.parent.parent.parent.parent.parent.parent.theme_style_menu.open()
 
             DropDownItem: # dummy
                 opacity: 0
@@ -231,3 +252,20 @@
         text: "File Chooser is in Open!"
         font_style: "H3"
         halign: "center"
+
+
+<MiscCheck@MDBoxLayout>
+    text: ""
+    active: check_box.active
+    spacing: "10dp"
+    adaptive_height: True
+
+    MDCheckbox:
+        id: check_box
+        size_hint: (None, None)
+        size: dp(24), dp(24)
+        pos_hint: {"center_y": .5}
+
+    CustomLabel:
+        text: root.text
+        pos_hint: {"center_y": .5}
