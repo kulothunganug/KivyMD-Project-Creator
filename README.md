@@ -1,5 +1,5 @@
 # KivyMD Project Creator
-A GUI Based Tool to Create Project for [KivyMD](https://github.com/kivymd/KivyMD)
+A GUI Based Tool to Create Project for [KivyMD](https://github.com/kivymd/KivyMD).
 
 ## Features
 * Ready-to-start a new project with various templates and theme customization.
