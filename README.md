@@ -18,11 +18,11 @@ project_name (Base Project Files)
 ```
 
 ## Dependencies
-- [Python 3.6+](https://www.python.org/)
+- [Python](https://www.python.org/) 3.6+
 - [Kivy](https://github.com/kivy/kivy) >= 2.0.0 ([Installation](https://kivy.org/doc/stable/gettingstarted/installation.html))
 - [Plyer](https://github.com/kivy/plyer)
 - [KivyMD](https://github.com/kivymd/KivyMD) >= 0.104.2.dev0 (from master branch)
-- [kivymd_extensions.sweetalert](https://github.com/kivymd-extensions/sweetalert)
+- [SweetAlert](https://github.com/kivymd-extensions/sweetalert)
 
 ## Installation
 ```
