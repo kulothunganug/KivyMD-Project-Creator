@@ -1,6 +1,7 @@
 import os
 
 import utils
+from constants import TEMPLATES_FOLDER
 from kivy.properties import BooleanProperty, StringProperty
 from kivy.uix.behaviors import ToggleButtonBehavior
 from kivymd.theming import ThemableBehavior
@@ -12,7 +13,6 @@ from kivymd.uix.screen import MDScreen
 class TemplatesScreen(MDScreen):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.templates_folder = os.path.join("libs", "applibs", "templates")
 
     def change_to_home(self):
         self.manager.current = "home"
@@ -31,7 +31,7 @@ class TemplatesScreen(MDScreen):
                 get_details = self.manager.get_screen("get_details")
                 get_details.selected_template = template_name
                 SELECTED_TEMPLATE_FOLDER = os.path.join(
-                    self.templates_folder, template_name
+                    TEMPLATES_FOLDER, template_name
                 )
                 get_details.template_py_files = utils.get_files(
                     SELECTED_TEMPLATE_FOLDER, [".py"]

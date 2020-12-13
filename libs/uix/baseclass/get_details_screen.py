@@ -1,7 +1,8 @@
-from datetime import datetime
 import os
 import shutil
+from datetime import datetime
 
+from constants import BASE_TEMPLATE_FOLDER, MISC_FOLDER
 from kivy.clock import Clock
 from kivy.properties import ColorProperty, ListProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
@@ -24,10 +25,7 @@ class GetDetailsScreen(MDScreen):
         super().__init__(**kwargs)
         self.ignore_chars = "!\"#$%&'()*+,-./:;<=>?@[\]^`{|}~ "  # NOQA: W605
         self.on_file_chooser_open = OnFileChooserOpen()
-        self.BASE_TEMPLATE_FOLDER = os.path.join(
-            "libs", "applibs", "templates", "base"
-        )
-        self.MISC_FOLDER = os.path.join("libs", "applibs", "misc")
+
         Clock.schedule_once(self._late_init)
 
     def _late_init(self, interval):
@@ -37,9 +35,7 @@ class GetDetailsScreen(MDScreen):
             items=menu_items,
             width_mult=3,
         )
-        self.primary_palette_menu.bind(
-            on_release=self.set_primary_palette_item
-        )
+        self.primary_palette_menu.bind(on_release=self.set_primary_palette_item)  # NOQA: E501
 
         self.accent_palette_menu = MDDropdownMenu(
             caller=self.ids.accent.ids.accent_palette,
@@ -136,7 +132,7 @@ class GetDetailsScreen(MDScreen):
                 type="warning",
             )
 
-        utils.copytree(self.BASE_TEMPLATE_FOLDER, FULL_PATH_TO_PROJECT)
+        utils.copytree(BASE_TEMPLATE_FOLDER, FULL_PATH_TO_PROJECT)
 
         os.rename(
             os.path.join(FULL_PATH_TO_PROJECT, "project_name.py"),
@@ -175,7 +171,7 @@ class GetDetailsScreen(MDScreen):
 
         if self.ids.gitignore.active:
             shutil.copy(
-                os.path.join(self.MISC_FOLDER, ".gitignore"),
+                os.path.join(MISC_FOLDER, ".gitignore"),
                 FULL_PATH_TO_PROJECT,
             )
         if self.ids.readme.active:
@@ -196,7 +192,7 @@ class GetDetailsScreen(MDScreen):
         )
 
     def edit_misc_file(self, file, values):
-        _misc_file = os.path.join(self.MISC_FOLDER, file)
+        _misc_file = os.path.join(MISC_FOLDER, file)
         shutil.copy(
             _misc_file,
             self.path_to_project,
