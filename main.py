@@ -13,7 +13,7 @@ from kivymd.app import MDApp  # NOQA: E402
 
 from libs.uix.baseclass.root import Root  # NOQA: E402
 
-__version__ = "v0.1.7b"
+__version__ = "v0.1.8b"
 
 
 if platform.system() == "Windows":
