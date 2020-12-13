@@ -39,7 +39,7 @@ class GetDetailsScreen(MDScreen):
         )
         self.primary_palette_menu.bind(
             on_release=self.set_primary_palette_item
-        )  # NOQA: E501
+        )
 
         self.accent_palette_menu = MDDropdownMenu(
             caller=self.ids.accent.ids.accent_palette,
@@ -196,11 +196,12 @@ class GetDetailsScreen(MDScreen):
         )
 
     def edit_misc_file(self, file, values):
-        misc_file = os.path.join(self.MISC_FOLDER, file)
+        _misc_file = os.path.join(self.MISC_FOLDER, file)
         shutil.copy(
-            misc_file,
+            _misc_file,
             self.path_to_project,
         )
+        misc_file = os.path.join(self.path_to_project, file)
         utils.edit_file(in_file=misc_file, values=values)
 
     def set_primary_palette_item(self, instance_menu, instance_menu_item):
