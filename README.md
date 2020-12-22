@@ -12,7 +12,7 @@ project_name (Base Project Files)
 | |____uix (UI files)
 | | |____baseclass (PY files)
 | | |____kv (KV files)
-| | |____custom_uix (Custom UIX)
+| | |____components (Custom UIX)
 | |____applibs (Custom Modules files)
 |____assets (Images and Font files)
 ```

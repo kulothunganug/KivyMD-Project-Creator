@@ -1,6 +1,6 @@
 {
 
-    "libs.uix.custom_uix.label": [
+    "libs.uix.components.label": [
         "AutoScaleLabel"
     ]
 }
