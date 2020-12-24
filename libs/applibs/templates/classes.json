@@ -1,0 +1,39 @@
+{
+    "backdrop": {
+        "Root": "libs.uix.baseclass.root",
+        "HomeScreen": "libs.uix.baseclass.home_screen",
+        "BackdropBackLayer": "libs.uix.baseclass.bd_back_layer",
+        "BackdropFrontLayer": "libs.uix.baseclass.bd_back_layer"
+    },
+    "base": {
+        "Root": "libs.uix.baseclass.root",
+        "HomeScreen": "libs.uix.baseclass.home_screen"
+    },
+    "basic": {
+        "Root": "libs.uix.baseclass.root",
+        "HomeScreen": "libs.uix.baseclass.home_screen"
+    },
+    "bottom-navigation": {
+        "Root": "libs.uix.baseclass.root",
+        "HomeScreen": "libs.uix.baseclass.home_screen",
+        "BTNavOne": "libs.uix.baseclass.btnav_one",
+        "BTNavTwo": "libs.uix.baseclass.btnav_two",
+        "BTNavThree": "libs.uix.baseclass.btnav_three"
+    },
+    "empty": {
+        "Root": "libs.uix.baseclass.root",
+        "HomeScreen": "libs.uix.baseclass.home_screen"
+    },
+    "navigation-drawer": {
+        "Root": "libs.uix.baseclass.root",
+        "HomeScreen": "libs.uix.baseclass.home_screen",
+        "ContentNavigationDrawer": "libs.uix.baseclass.content_nav_drawer"
+    },
+    "tab": {
+        "Root": "libs.uix.baseclass.root",
+        "HomeScreen": "libs.uix.baseclass.home_screen",
+        "TabOne": "libs.uix.baseclass.tab_one",
+        "TabTwo": "libs.uix.baseclass.tab_two",
+        "TabThree": "libs.uix.baseclass.tab_three"
+    }
+}

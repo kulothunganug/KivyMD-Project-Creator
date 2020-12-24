@@ -3,6 +3,7 @@ A GUI Based Tool to Create Project for [KivyMD](https://github.com/kivymd/KivyMD
 
 ## Features
 * Ready-to-start a new project with various templates and theme customization.
+* After Creating the project, it provides a file named `hotreloader.py` that already setuped [`kaki`](https://github.com/tito/kaki/) for hot reload.
 * Automatically creates (optionally) `.gitignore`, `README.md`, `LICENSE` for `git` purposes.
 * Creates `buildozer.spec` that already filled up.
 * Gives better source code management (Folder Structure 👇).

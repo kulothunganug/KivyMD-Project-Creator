@@ -1,8 +1,9 @@
+import json
 import os
 import shutil
 from datetime import datetime
 
-from constants import BASE_TEMPLATE_FOLDER, MISC_FOLDER
+from constants import BASE_TEMPLATE_FOLDER, MISC_FOLDER, TEMPLATES_FOLDER
 from kivy.clock import Clock
 from kivy.properties import ColorProperty, ListProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
@@ -35,7 +36,9 @@ class GetDetailsScreen(MDScreen):
             items=menu_items,
             width_mult=3,
         )
-        self.primary_palette_menu.bind(on_release=self.set_primary_palette_item)  # NOQA: E501
+        self.primary_palette_menu.bind(
+            on_release=self.set_primary_palette_item
+        )  # NOQA: E501
 
         self.accent_palette_menu = MDDropdownMenu(
             caller=self.ids.accent.ids.accent_palette,
@@ -168,6 +171,16 @@ class GetDetailsScreen(MDScreen):
                     "THEME_STYLE": self.ids.theme_style.ids.theme_style.current_item,  # NOQA: E501
                 },
             )
+
+        with open(os.path.join(TEMPLATES_FOLDER, "classes.json")) as f:
+            data = json.loads(f.read())
+
+        utils.edit_file(
+            in_file=os.path.join(FULL_PATH_TO_PROJECT, "hotreloader.py"),
+            values={
+                "CLASSES": f"CLASSES = {str(data[self.selected_template])}"
+            },
+        )
 
         if self.ids.gitignore.active:
             shutil.copy(
