@@ -1,3 +1,12 @@
+"""
+HotReloader
+-----------
+Uses kaki module for Hot Reload (limited to some uses cases).
+Before using, install kaki by `pip install kaki`
+
+"""
+
+
 import os
 import platform
 import sys
