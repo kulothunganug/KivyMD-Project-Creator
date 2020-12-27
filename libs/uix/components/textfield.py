@@ -23,6 +23,7 @@ Builder.load_string(
     hint_text_color: self.theme_cls.disabled_hint_text_color
     background_normal: f'{images_path}transparent.png'
     foreground_color: self.theme_cls.text_color
+    cursor_color: self.theme_cls.primary_color
     padding:
         self._lbl_icon_left.texture_size[1] + dp(10) \
         if self.icon_left else dp(15), \
@@ -77,9 +78,7 @@ Builder.load_string(
 
         Color:
             rgba:
-                (root.theme_cls.disabled_hint_text_color if not self.focus else root.foreground_color) \
-                if not self.hint_text_color else \
-                (self.hint_text_color if (not self.focus or self.focus) and not self.text else root.foreground_color)
+                self.hint_text_color if not self.text else root.foreground_color
 """
 )
 
@@ -94,7 +93,6 @@ class TextFieldRound(ThemableBehavior, TextInput):
         self._lbl_icon_right = MDIcon()
         super().__init__(**kwargs)
         self.register_event_type("on_info_press")
-        self.cursor_color = self.theme_cls.primary_color
 
     def on_icon_left(self, instance, value):
         self._lbl_icon_left.icon = value
