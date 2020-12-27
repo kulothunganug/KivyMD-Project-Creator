@@ -20,7 +20,7 @@ Builder.load_string(
     size_hint: 1, None
     height: self.line_height + dp(10)
     background_active: f'{images_path}transparent.png'
-    hint_text_color: (1, 0, 0, 1)
+    hint_text_color: self.theme_cls.disabled_hint_text_color
     background_normal: f'{images_path}transparent.png'
     foreground_color: self.theme_cls.text_color
     padding:
@@ -77,8 +77,9 @@ Builder.load_string(
 
         Color:
             rgba:
-                root.theme_cls.disabled_hint_text_color if not self.focus \
-                else root.foreground_color
+                (root.theme_cls.disabled_hint_text_color if not self.focus else root.foreground_color) \
+                if not self.hint_text_color else \
+                (self.hint_text_color if (not self.focus or self.focus) and not self.text else root.foreground_color)
 """
 )
 
