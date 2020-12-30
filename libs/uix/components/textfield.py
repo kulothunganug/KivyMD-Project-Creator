@@ -61,7 +61,7 @@ Builder.load_string(
                 else (0, 0)
             pos:
                 self.x, \
-                self.center[1] - self._lbl_icon_right.texture_size[1] / 2
+                self.center[1] - self._lbl_icon_left.texture_size[1] / 2
 
         # Texture of right Icon.
         Color:
