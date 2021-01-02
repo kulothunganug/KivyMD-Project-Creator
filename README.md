@@ -24,6 +24,7 @@ project_name (Base Project Files)
 - [Plyer](https://github.com/kivy/plyer)
 - [KivyMD](https://github.com/kivymd/KivyMD) >= 0.104.2.dev0 (from master branch)
 - [SweetAlert](https://github.com/kivymd-extensions/sweetalert)
+- [kaki](https://github.com/tito/kaki) for hotreloader
 
 ## Installation
 ```
