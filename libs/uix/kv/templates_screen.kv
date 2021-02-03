@@ -1,3 +1,5 @@
+#: import join os.path.join
+
 <TemplatesScreen>
 
     MDBoxLayout:
@@ -55,7 +57,7 @@
             size: self.size
 
     Image:
-        source: "assets/images/templates/" + root.name + ".png"
+        source: join("assets","images","templates",root.name + ".png")
         size_hint_y: None
         height: dp(340)
 
