@@ -4,31 +4,30 @@
         orientation: "vertical"
         pos_hint: {"center_y": .7}
         adaptive_height: True
+        spacing: dp(60)
 
         Image:
             source: "assets/images/logo.png"
             size_hint_y: None
 
-    CustomLabel:
-        text: f"[color=#ffffff]A Tool to Create Project for KivyMD[/color]"
-        markup: True
-        halign: "center"
-        pos_hint: {"center_y": .6}
-        font_style: "Body1"
+        CustomLabel:
+            text: f"[color=#ffffff]A Tool to Create Project for KivyMD[/color]"
+            markup: True
+            halign: "center"
+            font_style: "Body1"
 
-    CustomLabel:
-        text: f"[color=#ffffff]KivyMD Project Creator[/color]"
-        markup: True
-        halign: "center"
-        pos_hint: {"center_y": .5}
-        font_style: "H1"
-        font_size: sp(56)
+        CustomLabel:
+            text: f"[color=#ffffff]KivyMD Project Creator[/color]"
+            markup: True
+            halign: "center"
+            font_style: "H1"
+            font_size: sp(56)
 
 
     MDFillRoundFlatIconButton:
         text: "Create New Project"
         icon: "plus"
-        pos_hint: {"center_x": .5, "center_y": .35}
+        pos_hint: {"center_x": .5, "center_y": .4}
         on_release: root.change_to_templates()
 
     AnchorLayout:
