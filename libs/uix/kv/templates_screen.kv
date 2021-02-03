@@ -62,6 +62,7 @@
         height: dp(340)
 
     CustomLabel:
-        text: (root.name).title()
+        text: "[color=#ffffff]"+(root.name).title()+"[/color]"
+        markup: True
         halign: "center"
         font_style: "H6" if root.use_toggle_behavior else "Body1"
