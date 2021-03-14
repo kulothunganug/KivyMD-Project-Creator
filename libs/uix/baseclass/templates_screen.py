@@ -1,13 +1,14 @@
 import os
 
-import utils
-from constants import TEMPLATES_FOLDER
 from kivy.properties import BooleanProperty, StringProperty
 from kivy.uix.behaviors import ToggleButtonBehavior
 from kivymd.theming import ThemableBehavior
 from kivymd.uix.behaviors import HoverBehavior
 from kivymd.uix.boxlayout import MDBoxLayout
 from kivymd.uix.screen import MDScreen
+
+import utils
+from constants import TEMPLATES_FOLDER
 
 
 class TemplatesScreen(MDScreen):

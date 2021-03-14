@@ -1,5 +1,6 @@
-import utils
 from kivymd.uix.screen import MDScreen
+
+import utils
 
 
 class HomeScreen(MDScreen):

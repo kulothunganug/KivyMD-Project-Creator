@@ -3,7 +3,6 @@ import os
 import shutil
 from datetime import datetime
 
-from constants import BASE_TEMPLATE_FOLDER, MISC_FOLDER, TEMPLATES_FOLDER
 from kivy.clock import Clock
 from kivy.properties import ColorProperty, ListProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
@@ -15,6 +14,8 @@ from kivymd_extensions.sweetalert import SweetAlert
 from plyer import filechooser
 
 from libs.applibs import utils
+
+from constants import BASE_TEMPLATE_FOLDER, MISC_FOLDER, TEMPLATES_FOLDER
 
 
 class GetDetailsScreen(MDScreen):

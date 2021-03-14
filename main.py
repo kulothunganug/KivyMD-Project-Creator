@@ -5,13 +5,14 @@ root_dir = os.path.split(os.path.abspath(sys.argv[0]))[0]
 sys.path.insert(0, os.path.join(root_dir, "libs", "applibs"))
 import platform  # NOQA: E402
 
-import utils  # NOQA: E402
 from kivy.config import Config  # NOQA: E402
 from kivy.core.window import Window  # NOQA: E402
 from kivy.logger import Logger  # NOQA: E402
 from kivymd.app import MDApp  # NOQA: E402
 
 from libs.uix.baseclass.root import Root  # NOQA: E402
+
+import utils  # NOQA: E402
 
 __version__ = "v0.2.0b"
 
