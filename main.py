@@ -14,7 +14,7 @@ from libs.uix.baseclass.root import Root  # NOQA: E402
 
 import utils  # NOQA: E402
 
-__version__ = "v0.2.0b"
+__version__ = "v0.3.0b"
 
 
 if platform.system() == "Windows":
