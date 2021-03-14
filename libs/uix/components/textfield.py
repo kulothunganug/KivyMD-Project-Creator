@@ -78,7 +78,8 @@ Builder.load_string(
 
         Color:
             rgba:
-                self.hint_text_color if not self.text else root.foreground_color
+                self.hint_text_color if not self.text \
+                else root.foreground_color
 """
 )
 
