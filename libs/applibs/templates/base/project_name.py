@@ -11,7 +11,7 @@ if platform.system() == "Windows":
     os.environ["KIVY_GL_BACKEND"] = "angle_sdl2"
 
 
-class PROJECT_NAME(MDApp):
+class PROJECT_NAME(MDApp):  # NOQA: N801
     def __init__(self, **kwargs):
         super(PROJECT_NAME, self).__init__(**kwargs)
         Window.soft_input_mode = "below_target"

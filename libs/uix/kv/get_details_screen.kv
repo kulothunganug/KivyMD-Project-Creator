@@ -53,7 +53,7 @@
                         id: project_name
                         icon_left: "script-text"
                         hint_text: "Project Name"
-                        on_info_press: SweetAlert().fire("Project Name", f"Name of the Project, Must Not Contain '{root.ignore_chars}'")
+                        on_info_press: SweetAlert().fire("Project Name", f"Name of the Project, Must Not Contain '{root.ignore_chars}' and not to start with a number.")
 
                     CustomTextField:
                         id: application_version

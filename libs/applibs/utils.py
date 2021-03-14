@@ -53,10 +53,10 @@ def edit_file(in_file, out_file=None, values=None):
 
 
 def get_files(path, ext):
-    FILES = []
+    files = []
 
     for i in os.listdir(path):
         if os.path.splitext(i)[1] in ext:
-            FILES.append(os.path.join(path, i))
+            files.append(os.path.join(path, i))
 
-    return FILES
+    return files

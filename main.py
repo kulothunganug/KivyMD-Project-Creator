@@ -44,7 +44,7 @@ class MainApp(MDApp):
         self.theme_cls.theme_style = "Dark"
 
     def build(self):
-        FONT_PATH = os.path.join("assets", "fonts/")
+        FONT_PATH = os.path.join("assets", "fonts/")  # NOQA: N806
 
         self.theme_cls.font_styles.update(
             {

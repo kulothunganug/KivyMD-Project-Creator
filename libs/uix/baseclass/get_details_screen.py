@@ -84,11 +84,11 @@ class GetDetailsScreen(MDScreen):
     ):
 
         (
-            APPLICATION_TITLE,
-            PROJECT_NAME,
-            APPLICATION_VERSION,
-            PATH_TO_PROJECT,
-            AUTHOR_NAME,
+            APPLICATION_TITLE,  # NOQA: N806
+            PROJECT_NAME,  # NOQA: N806
+            APPLICATION_VERSION,  # NOQA: N806
+            PATH_TO_PROJECT,  # NOQA: N806
+            AUTHOR_NAME,  # NOQA: N806
         ) = (
             _application_title.strip(),
             _project_name.strip(),
@@ -118,8 +118,18 @@ class GetDetailsScreen(MDScreen):
                 f"Please Don't Use '{chars}' in Project Name",
                 type="warning",
             )
+        else:
+            for i in "1234567890":
+                if PROJECT_NAME.startswith(i):
+                    return SweetAlert().fire(
+                        "Please Don't Use numbers as starting"
+                        + "letters of the Project Name",
+                        type="warning",
+                    )
 
-        FULL_PATH_TO_PROJECT = os.path.join(PATH_TO_PROJECT, PROJECT_NAME)
+        FULL_PATH_TO_PROJECT = os.path.join(  # NOQA: N806
+            PATH_TO_PROJECT, PROJECT_NAME
+        )
         self.path_to_project = FULL_PATH_TO_PROJECT
         project_name = PROJECT_NAME.lower()
 
@@ -143,7 +153,9 @@ class GetDetailsScreen(MDScreen):
             os.path.join(FULL_PATH_TO_PROJECT, f"{project_name}.py"),
         )
 
-        PROJECT_UIX_FOLDER = os.path.join(FULL_PATH_TO_PROJECT, "libs", "uix")
+        PROJECT_UIX_FOLDER = os.path.join(  # NOQA: N806
+            FULL_PATH_TO_PROJECT, "libs", "uix"
+        )
 
         for py_file in self.template_py_files:
             shutil.copy(

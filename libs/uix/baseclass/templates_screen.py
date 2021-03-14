@@ -31,7 +31,7 @@ class TemplatesScreen(MDScreen):
                 template_name = widget.name
                 get_details = self.manager.get_screen("get_details")
                 get_details.selected_template = template_name
-                SELECTED_TEMPLATE_FOLDER = os.path.join(
+                SELECTED_TEMPLATE_FOLDER = os.path.join(  # NOQA: N806
                     TEMPLATES_FOLDER, template_name
                 )
                 get_details.template_py_files = utils.get_files(

@@ -31,7 +31,7 @@ if platform.system() == "Windows":
 KV_FOLDER = os.path.join(os.getcwd(), "libs", "uix", "kv")
 
 
-class PROJECT_NAME(MDApp, HotReloaderApp):
+class PROJECT_NAME(MDApp, HotReloaderApp):  # NOQA: N801
     DEBUG = 1  # To enable Hot Reload
 
     # *.kv files to watch
@@ -39,7 +39,7 @@ class PROJECT_NAME(MDApp, HotReloaderApp):
 
     # Class to watch from *.py files
     # You need to register the *.py files in libs/uix/baseclass/*.py
-    CLASSES
+    CLASSES  # NOQA: F821
 
     # Auto Reloader Path
     AUTORELOADER_PATHS = [
