@@ -24,6 +24,7 @@ Builder.load_string(
     background_normal: f'{images_path}transparent.png'
     foreground_color: self.theme_cls.text_color
     cursor_color: self.theme_cls.primary_color
+    font_name: 'assets/fonts/Overpass-Regular.ttf'
     padding:
         self._lbl_icon_left.texture_size[1] + dp(10) \
         if self.icon_left else dp(15), \
