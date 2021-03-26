@@ -4,6 +4,7 @@ import shutil
 from datetime import datetime
 
 from kivy.clock import Clock
+from kivy.metrics import dp
 from kivy.properties import ColorProperty, ListProperty, StringProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.color_definitions import hue, palette
@@ -31,48 +32,84 @@ class GetDetailsScreen(MDScreen):
         Clock.schedule_once(self._late_init)
 
     def _late_init(self, interval):
-        menu_items = [{"text": primary_palette} for primary_palette in palette]
+        primary_palette_items = [
+            {
+                "text": primary_palette,
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x=primary_palette: self.set_primary_palette_item(
+                    x
+                ),
+            }
+            for primary_palette in palette
+        ]
         self.primary_palette_menu = MDDropdownMenu(
             caller=self.ids.primary.ids.primary_palette,
-            items=menu_items,
+            items=primary_palette_items,
             width_mult=3,
         )
-        self.primary_palette_menu.bind(
-            on_release=self.set_primary_palette_item
-        )  # NOQA: E501
+
+        accent_palette_items = [
+            {
+                "text": accent_palette,
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x=accent_palette: self.set_accent_palette_item(
+                    x
+                ),
+            }
+            for accent_palette in palette
+        ]
 
         self.accent_palette_menu = MDDropdownMenu(
             caller=self.ids.accent.ids.accent_palette,
-            items=menu_items,
+            items=accent_palette_items,
             width_mult=3,
         )
-        self.accent_palette_menu.bind(on_release=self.set_accent_palette_item)
 
-        hue_items = [{"text": hue_code} for hue_code in hue]
+        primary_hue_items = [
+            {
+                "text": hue_code,
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x=hue_code: self.set_primary_hue_item(x),
+            }
+            for hue_code in hue
+        ]
 
         self.primary_hue_menu = MDDropdownMenu(
             caller=self.ids.primary.ids.primary_hue,
-            items=hue_items,
+            items=primary_hue_items,
             width_mult=2,
         )
-        self.primary_hue_menu.bind(on_release=self.set_primary_hue_item)
+
+        accent_hue_items = [
+            {
+                "text": hue_code,
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x=hue_code: self.set_accent_hue_item(x),
+            }
+            for hue_code in hue
+        ]
 
         self.accent_hue_menu = MDDropdownMenu(
             caller=self.ids.accent.ids.accent_hue,
-            items=hue_items,
+            items=accent_hue_items,
             width_mult=2,
         )
-        self.accent_hue_menu.bind(on_release=self.set_accent_hue_item)
 
         theme_style_items = [
-            {"text": theme_style} for theme_style in ["Light", "Dark"]
+            {
+                "text": theme_style,
+                "viewclass": "OneLineListItem",
+                "on_release": lambda x=theme_style: self.set_theme_style_item(
+                    x
+                ),
+            }
+            for theme_style in ["Light", "Dark"]
         ]
         self.theme_style_menu = MDDropdownMenu(
             caller=self.ids.theme_style.ids.theme_style,
             items=theme_style_items,
             width_mult=3,
         )
-        self.theme_style_menu.bind(on_release=self.set_theme_style_item)
 
     def create_project(
         self,
@@ -226,25 +263,25 @@ class GetDetailsScreen(MDScreen):
         misc_file = os.path.join(self.path_to_project, file)
         utils.edit_file(in_file=misc_file, values=values)
 
-    def set_primary_palette_item(self, instance_menu, instance_menu_item):
-        self.ids.primary.ids.primary_palette.set_item(instance_menu_item.text)
-        instance_menu.dismiss()
+    def set_primary_palette_item(self, text):
+        self.ids.primary.ids.primary_palette.set_item(text)
+        self.primary_palette_menu.dismiss()
 
-    def set_accent_palette_item(self, instance_menu, instance_menu_item):
-        self.ids.accent.ids.accent_palette.set_item(instance_menu_item.text)
-        instance_menu.dismiss()
+    def set_accent_palette_item(self, text):
+        self.ids.accent.ids.accent_palette.set_item(text)
+        self.accent_palette_menu.dismiss()
 
-    def set_primary_hue_item(self, instance_menu, instance_menu_item):
-        self.ids.primary.ids.primary_hue.set_item(instance_menu_item.text)
-        instance_menu.dismiss()
+    def set_primary_hue_item(self, text):
+        self.ids.primary.ids.primary_hue.set_item(text)
+        self.primary_hue_menu.dismiss()
 
-    def set_accent_hue_item(self, instance_menu, instance_menu_item):
-        self.ids.accent.ids.accent_hue.set_item(instance_menu_item.text)
-        instance_menu.dismiss()
+    def set_accent_hue_item(self, text):
+        self.ids.accent.ids.accent_hue.set_item(text)
+        self.accent_hue_menu.dismiss()
 
-    def set_theme_style_item(self, instance_menu, instance_menu_item):
-        self.ids.theme_style.ids.theme_style.set_item(instance_menu_item.text)
-        instance_menu.dismiss()
+    def set_theme_style_item(self, text):
+        self.ids.theme_style.ids.theme_style.set_item(text)
+        self.theme_style_menu.dismiss()
 
     def open_file_manager(self):
         def _open_file_chooser(i):
