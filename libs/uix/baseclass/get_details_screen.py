@@ -35,6 +35,7 @@ class GetDetailsScreen(MDScreen):
         primary_palette_items = [
             {
                 "text": primary_palette,
+                "divider": None,
                 "viewclass": "OneLineListItem",
                 "on_release": lambda x=primary_palette: self.set_primary_palette_item(
                     x
@@ -51,6 +52,7 @@ class GetDetailsScreen(MDScreen):
         accent_palette_items = [
             {
                 "text": accent_palette,
+                "divider": None,
                 "viewclass": "OneLineListItem",
                 "on_release": lambda x=accent_palette: self.set_accent_palette_item(
                     x
@@ -68,6 +70,7 @@ class GetDetailsScreen(MDScreen):
         primary_hue_items = [
             {
                 "text": hue_code,
+                "divider": None,
                 "viewclass": "OneLineListItem",
                 "on_release": lambda x=hue_code: self.set_primary_hue_item(x),
             }
@@ -83,6 +86,7 @@ class GetDetailsScreen(MDScreen):
         accent_hue_items = [
             {
                 "text": hue_code,
+                "divider": None,
                 "viewclass": "OneLineListItem",
                 "on_release": lambda x=hue_code: self.set_accent_hue_item(x),
             }
@@ -98,6 +102,8 @@ class GetDetailsScreen(MDScreen):
         theme_style_items = [
             {
                 "text": theme_style,
+                "divider": None,
+                "height": dp(54),
                 "viewclass": "OneLineListItem",
                 "on_release": lambda x=theme_style: self.set_theme_style_item(
                     x
