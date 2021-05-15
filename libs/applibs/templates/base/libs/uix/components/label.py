@@ -1,7 +1,7 @@
 """
     Usage:
     -----
-    Use it like a normal `MDLabel` but not to use these attr:
+    Use it like a normal `MDLabel` but do not to use these attr:
         * auto_scale
         * texture_size = 0
         * width = 0
