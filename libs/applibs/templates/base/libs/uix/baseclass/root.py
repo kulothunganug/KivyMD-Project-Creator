@@ -1,7 +1,7 @@
 import json
 
 from kivy.clock import Clock
-from kivy.factory import Factory  # NOQA: F401
+from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 
 import utils
@@ -25,31 +25,30 @@ class Root(ScreenManager):
         """
         If you need to use more screens in your app,
         Create your screen files like below:
-            1. Create screen_name.py in libs/uix/baseclass/
-            2. Create screen_name.kv in libs/uix/kv/
+            1. Create screen_file.py in libs/uix/baseclass/
+            2. Create screen_file.kv in libs/uix/kv/
             3. Add the screen details in screens.json like below:
                 {
                     ...,
-                    "from libs.uix.baseclass.screen_name import ScreenClassName": {
-                        "screen_name": "my_screen_name",
-                        "factory": "Factory.ScreenClassName()",
+                    "screen_name": {
+                        "import": "from libs.uix.baseclass.screen_py_file import ScreenObject",
+                        "kv": "libs/uix/kv/screen_kv_file.kv",
+                        "object": "ScreenObject()"
                     }
                 }
                 Note: In .JSON you must not use:
-                        * Extra Commas
+                        * Unneeded Commas
                         * Comments
-                        * Trailing White Spaces.
         """
         with open("screens.json") as f:
             screens = json.load(f)
-            for import_screen, screen_details in screens.items():
-                exec(import_screen)  # excecuting imports
-                screen_object = eval(
-                    screen_details["factory"]
-                )  # adding it to Factory
-                screen_object.name = screen_details[
-                    "screen_name"
-                ]  # giving the name of the screen
-                self.add_widget(
-                    screen_object
-                )  # finally adding it to the screen manager
+
+        for screen_name in screens.keys():
+            screen_details = screens[screen_name]
+            Builder.load_file(screen_details["kv"])
+            exec(screen_details["import"])  # excecuting imports
+            screen_object = eval(screen_details["object"])  # calling it
+            screen_object.name = screen_name  # giving the name of the screen
+            self.add_widget(
+                screen_object
+            )  # finally adding it to the screen manager
