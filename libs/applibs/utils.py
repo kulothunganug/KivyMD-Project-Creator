@@ -37,9 +37,9 @@ def copytree(src, dst, symlinks=False, ignore=None):
             shutil.copy2(s, d)
 
 
-def edit_file(in_file, out_file=None, values=None):
+def edit_file(file, values=None):
 
-    with open(in_file) as f:
+    with open(file) as f:
         string_file = f.read()
 
     if values:
@@ -48,7 +48,7 @@ def edit_file(in_file, out_file=None, values=None):
                 continue
             string_file = string_file.replace(key, values[key])
 
-        with open(out_file if out_file else in_file, "w") as f:
+        with open(file, "w") as f:
             f.write(string_file)
 
 

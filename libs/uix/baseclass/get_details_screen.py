@@ -148,7 +148,7 @@ class GetDetailsScreen(MDScreen):
             and len(AUTHOR_NAME)
         ) == 0:
             return SweetAlert().fire(
-                "Please Fill Up All the Fields!", type="warning"
+                "Please fill up all the Fields!", type="warning"
             )
 
         chars = ""
@@ -158,15 +158,14 @@ class GetDetailsScreen(MDScreen):
 
         if chars:
             return SweetAlert().fire(
-                f"Please Don't Use '{chars}' in Project Name",
+                f"Please don't use '{chars}' in Project Name",
                 type="warning",
             )
         else:
             for i in "1234567890":
                 if PROJECT_NAME.startswith(i):
                     return SweetAlert().fire(
-                        "Please Don't Use numbers as starting"
-                        + "letters of the Project Name",
+                        "Please don't use numbers as starting letters of the Project Name",
                         type="warning",
                     )
 
@@ -185,7 +184,7 @@ class GetDetailsScreen(MDScreen):
 
         if os.path.exists(FULL_PATH_TO_PROJECT):
             return SweetAlert().fire(
-                f"Folder Named {project_name} is Already Exists! in '{PATH_TO_PROJECT}'",  # NOQA: E501
+                f"Folder named {project_name} is Already Exists! in '{PATH_TO_PROJECT}'",  # NOQA: E501
                 type="warning",
             )
 
@@ -213,7 +212,7 @@ class GetDetailsScreen(MDScreen):
 
         for file in utils.get_files(FULL_PATH_TO_PROJECT, [".py", ".spec"]):
             utils.edit_file(
-                in_file=file,
+                file=file,
                 values={
                     "APPLICATION_TITLE": APPLICATION_TITLE,
                     "PROJECT_NAME": PROJECT_NAME,
@@ -232,7 +231,7 @@ class GetDetailsScreen(MDScreen):
             data = json.loads(f.read())
 
         utils.edit_file(
-            in_file=os.path.join(FULL_PATH_TO_PROJECT, "hotreloader.py"),
+            file=os.path.join(FULL_PATH_TO_PROJECT, "hotreloader.py"),
             values={
                 "CLASSES": f"CLASSES = {str(data[self.selected_template])}"
             },
@@ -267,7 +266,7 @@ class GetDetailsScreen(MDScreen):
             self.path_to_project,
         )
         misc_file = os.path.join(self.path_to_project, file)
-        utils.edit_file(in_file=misc_file, values=values)
+        utils.edit_file(file=misc_file, values=values)
 
     def set_primary_palette_item(self, text):
         self.ids.primary.ids.primary_palette.set_item(text)
