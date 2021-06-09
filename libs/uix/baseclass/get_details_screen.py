@@ -291,7 +291,7 @@ class GetDetailsScreen(MDScreen):
     def open_file_manager(self):
         def _open_file_chooser(i):
             try:
-                filechooser.choose_di(on_selection=self.on_path_selection)
+                filechooser.choose_dir(on_selection=self.on_path_selection)
             except Exception:
                 SweetAlert().fire(
                     "File choosing feature is not supported on your platform, consider entering the path manually",
