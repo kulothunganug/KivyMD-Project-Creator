@@ -1,5 +1,10 @@
-# KivyMD Project Creator
-A GUI Based Tool to Create Project for [KivyMD](https://github.com/kivymd/KivyMD).
+<p align="center">
+  <img height="128" src="https://github.com/Kulothungan16/KivyMD-Project-Creator/raw/main/assets/images/logo.png">
+  <h1 align="center">KivyMD Project Creator</h1>
+  <p align="center">A GUI Based Tool to Create Project for <a href="https://github.com/kivymd/KivyMD">KivyMD</a>.</p>
+</p>
+
+<br>
 
 ## Features
 * Ready-to-start a new project with various templates and theme customization.
@@ -18,7 +23,7 @@ project_name (Base Project Files)
 |____assets (Images and Font files)
 ```
 
-## Dependencies
+### Dependencies
 - [Python](https://www.python.org/) 3.6+
 - [Kivy](https://github.com/kivy/kivy) >= 2.0.0 ([Installation](https://kivy.org/doc/stable/gettingstarted/installation.html))
 - [Plyer](https://github.com/kivy/plyer)
@@ -26,7 +31,7 @@ project_name (Base Project Files)
 - [SweetAlert](https://github.com/kivymd-extensions/sweetalert)
 - [kaki](https://github.com/tito/kaki) for hotreloader
 
-## Installation
+### Installation
 ```
 git clone https://github.com/Kulothungan16/KivyMD_Project_Creator
 cd KivyMD_Project_Creator
