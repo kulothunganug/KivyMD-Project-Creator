@@ -71,9 +71,9 @@
                             hint_text: "Path to Project"
                             on_info_press: SweetAlert().fire("Path to Project", "Path to Create the Project.")
 
-                        MDFlatButton:
+                        MDTextButton:
                             text: "Select Path"
-                            pos_hint: {"center_x": .5, "center_y": .5}
+                            pos_hint: {"center_y": .5}
                             on_release: root.open_file_manager()
 
                     CustomTextField:
