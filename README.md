@@ -6,6 +6,8 @@
 
 <br>
 
+#### We no longer support this project please use [KivyMD's project generator](https://kivymd.readthedocs.io/en/latest/api/kivymd/tools/patterns/create_project/).
+
 ## Features
 * Ready-to-start a new project with various templates and theme customization.
 * After Creating the project, it provides a file named `hotreloader.py` that already setuped [`kaki`](https://github.com/tito/kaki/) for hot reload.
